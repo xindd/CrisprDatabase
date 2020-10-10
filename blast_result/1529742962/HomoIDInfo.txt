@@ -1,0 +1,3 @@
+Query_Protein_ID	Homoloty_Protein_ID	Homology_Protein_DB	Homology_Bacteria_Genome_ID	Homology_Protein_Def
+NP_666582.1	NP_666582.1	ref	NC_004086.1	hypothetical protein SIRV2gp48 [Sulfolobus islandicus rod-shaped virus 2]
+NP_666582.1	CAC87323.1	emb	AJ344259.1	hypothetical protein [Sulfolobus islandicus rod-shaped virus 2]

@@ -1,0 +1,23 @@
+Query_ProteinID	Homo_ProteinID	Homo_GenomeID	Homo_Neighbor_ProteinID	Homo_Neighbor_Protein_Def	Homo_Neighbor_Protein_Location	Homo_Neighbor_Domain_ID	Homo_Neighbor_Domain_Name	Homo_Neighbor_Domain_Def	evalue	identity	coverage
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666577.1	hypothetical protein	[27838:28369](+)	164862	PHA01631: PHA01631	hypothetical protein.	8.65715e-105	0.977272727273	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666578.1	hypothetical protein	[28450:29521](+)	164861	PHA01630: PHA01630	putative group 1 glycosyl transferase.	2.85943e-172	0.355555555556	1.01123595506
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666579.1	hypothetical protein	[29521:29806](-)	165136	PHA02771: PHA02771	hypothetical protein; Provisional.	8.11113e-46	0.877777777778	0.957446808511
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666580.1	hypothetical protein	[29806:30094](-)	165137	PHA02772: PHA02772	hypothetical protein; Provisional.	1.18402e-48	0.936842105263	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666581.1	hypothetical protein	[30243:30582](-)	165138	PHA02773: PHA02773	hypothetical protein; Provisional.	2.50869e-55	0.794642857143	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666582.1	hypothetical protein	[30774:31524](-)	164860	PHA01625: PHA01625	hypothetical protein.	2.37652e-155	0.74297188755	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666583.1	hypothetical protein	[31670:31967](-)	222835	PHA01757: PHA01757	hypothetical protein.	4.16238e-53	0.857142857143	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666584.1	hypothetical protein	[32070:32292](-)	165131	PHA02766: PHA02766	hypothetical protein; Provisional.	4.09242e-30	0.904109589041	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666585.1	hypothetical protein	[32492:32819](-)	None	None	None	None	None	None
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666586.1	hypothetical protein	[32955:33273](-)	164985	PHA02590: PHA02590	hypothetical protein; Provisional.	1.24484e-28	0.619047619048	1.0
+NP_666582.1	NP_666582.1	NC_004086.1-NP_666582.1	NP_666587.1	hypothetical protein	[33507:33867](-)	284521	pfam07118: DUF1374	Protein of unknown function (DUF1374).  This family consists of several hypothetical Sulfolobus virus proteins of around 100 residues in length. The function of this family is unknown.	1.53505e-10	0.347826086957	0.773109243697
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87318.1	hypothetical protein	[27838:28369](+)	164862	PHA01631: PHA01631	hypothetical protein.	8.65715e-105	0.977272727273	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87319.1	hypothetical protein	[28450:29521](+)	164861	PHA01630: PHA01630	putative group 1 glycosyl transferase.	2.85943e-172	0.355555555556	1.01123595506
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87320.1	hypothetical protein	[29521:29806](-)	165136	PHA02771: PHA02771	hypothetical protein; Provisional.	8.11113e-46	0.877777777778	0.957446808511
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87321.1	hypothetical protein	[29806:30094](-)	165137	PHA02772: PHA02772	hypothetical protein; Provisional.	1.18402e-48	0.936842105263	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87322.1	hypothetical protein	[30243:30582](-)	165138	PHA02773: PHA02773	hypothetical protein; Provisional.	2.50869e-55	0.794642857143	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87323.1	hypothetical protein	[30774:31524](-)	164860	PHA01625: PHA01625	hypothetical protein.	2.37652e-155	0.74297188755	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87324.1	hypothetical protein	[31670:31967](-)	222835	PHA01757: PHA01757	hypothetical protein.	4.16238e-53	0.857142857143	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87325.1	hypothetical protein	[32070:32292](-)	165131	PHA02766: PHA02766	hypothetical protein; Provisional.	4.09242e-30	0.904109589041	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87326.1	hypothetical protein	[32492:32819](-)	None	None	None	None	None	None
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87327.1	hypothetical protein	[32955:33273](-)	164985	PHA02590: PHA02590	hypothetical protein; Provisional.	1.24484e-28	0.619047619048	1.0
+NP_666582.1	CAC87323.1	AJ344259.1-CAC87323.1	CAC87328.1	hypothetical protein	[33507:33867](-)	284521	pfam07118: DUF1374	Protein of unknown function (DUF1374).  This family consists of several hypothetical Sulfolobus virus proteins of around 100 residues in length. The function of this family is unknown.	1.53505e-10	0.347826086957	0.773109243697
