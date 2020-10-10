@@ -12,4 +12,4 @@ Development of crispr database based on django
 
 ## View
 
-![image](https://github.com/xindd/readme_img/blob/main/srgi_view.png)
+![image](https://github.com/xindd/readme_img/blob/main/srgi-view.png)
