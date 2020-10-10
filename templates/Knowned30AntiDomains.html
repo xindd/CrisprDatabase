@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/ecarts/homologs.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    </style>
+{% endblock %}
+
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+      <div class="am-container">
+        <div class="tpl-portlet-components">
+             <table class="am-table am-table-bordered am-table-compact" id="table-list" style="font-size: 1px;">
+                <thead>
+                    <tr>
+                        <th>ProteinID</th>
+                        <th>GenomeID</th>
+                        <th>Neighbor ProteinID</th>
+                        <th>Neighbor Protein_Def</th>
+                        <th>Neighbor Protein Location</th>
+                        <th>Neighbor Domain ID</th>
+                        <th>Neighbor Domain Name</th>
+                        <th>Neighbor Domain Def</th>
+                        <th>evalue</th>
+                        <th>identity</th>
+                        <th>coverage</th>
+                    </tr>
+                </thead>
+             <tbody>
+                {% for rowdata in dataset %}
+                    <tr style="{% if rowdata.proteinid == rowdata.neighbor_proteinid %}background: #7588a5;{% endif %}">
+                        <td>{{ rowdata.proteinid }}</td>
+                        <td>{{ rowdata.genomeid }}</td>
+                        <td>{{ rowdata.neighbor_proteinid }}</td>
+                        <td>{{ rowdata.neighbor_protein_def }}</td>
+                        <td>{{ rowdata.neighbor_protein_location }}</td>
+                        <td>{{ rowdata.neighbor_domain_id }}</td>
+                        <td>{{ rowdata.neighbor_domain_name }}</td>
+                        <td>{{ rowdata.neighbor_domain_def }}</td>
+                        <td>{{ rowdata.evalue }}</td>
+                        <td>{{ rowdata.identity }}</td>
+                        <td>{{ rowdata.coverage }}</td>
+                    </tr>
+                {% endfor %}
+             </tbody>
+	</table>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+
+{% block jsblock %}
+
+{% endblock %}

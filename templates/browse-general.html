@@ -1,0 +1,154 @@
+{% load static %}
+{% load splitfile %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/static/css/app.css" />
+    <style>
+    .am-table {
+        border-collapse: collapse;
+    }
+    .am-radio, .am-checkbox {
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title {
+        border-bottom: 0px;
+        border-top: 0;
+        padding: 0;
+        min-height: 0;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title .caption {
+        padding: 0;
+    }
+    .caption{
+        margin-bottom: 10px;
+        border-bottom: 2px solid;
+        margin-top: 15px;
+    }
+        .general_table tr td:first-child{
+            width: 20%;
+        }
+        .general_table tr td:last-child{
+            width: 20%;
+        }
+        .span_click{
+            margin-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="am-panel-group" id="accordion">
+<table class="am-table am-table-bordered" style="margin-bottom: 0px;background: #ccc;margin-top: 10px;">
+    <thead>
+        <tr>
+            <th style="width: 20%">RSS_ID</th>
+            <th style="width: 10%">Short_name</th>
+            <th style="width: 50%">Organism</th>
+            <th style="width: 20%">RNAi_inhibited</th>
+        </tr>
+    </thead>
+</table>
+{% for key, values in dataset.items %}
+    <form class="am-form" METHOD="post" ACTION="/VSR/general_align/" target="_blank" data-am-validator>
+    {% csrf_token %}
+
+    {% with idnum=forloop.counter %}
+    <div class="am-panel am-panel-default" id="title_{{ idnum }}" style="border: 0px">
+      <div class="am-panel-hd" style="background: white;border-bottom: 2px solid #274472;padding-left: 0px">
+        <h3 class="am-panel-title">
+            <ul class="am-nav am-nav-pills">
+                <li style="margin: 3px 10px 0px 9px;display: none" id="licheck_{{ idnum }}">
+                    <label class="am-checkbox-inline">
+                    <input type="checkbox" id="check_{{ idnum }}" data-am-ucheck onclick="quanxuan(this)"> All
+                </label>
+                </li>
+
+                <li><span class="am-icon-plus-square-o span_click  am-collapsed" id="#span_{{ idnum }}" data-am-collapse="{parent: '#title_{{ idnum }}', target: '#title_{{ forloop.counter }}_child'}"></span></li>
+                <li> <p>{{ key | split1 }} ({{ values.count }} proteins)</p></li>
+{#                <li style="float: right;margin-right: 10px;"><p>{{ key | split2 }}</p></li>#}
+                {% if values.0.length >= 2 %}
+                    <li>
+                        <div class="" style="float: right;">
+                            <button type="submit" id="button_span_{{ idnum }}" class="am-btn am-btn-default am-btn-xs" style="display: none">Align</button>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
+        </h3>
+      </div>
+    <div id="title_{{ idnum }}_child" class="am-panel-collapse am-collapse ">
+          <table class="am-table am-table-bordered am-table-radius am-table-striped general_table" style="margin-bottom: 0px">
+            <tbody>
+            {% for dic in values %}
+                <tr>
+                    <td>
+                        <label class="am-checkbox">
+                            {% if dic.length >= 2 %}
+                                {% if dic.accession != None and dic.accession != '' %}
+                                    <input type="checkbox" class="check_{{ idnum }}" name="cbx" value="{{ dic.accession }}" data-am-ucheck required minchecked="2">
+                                {% endif %}
+                            {% endif %}
+                            <a href="/VSR/browse_VSR_detail/{{ dic.rss_id  }}" target="_blank">{{ dic.rss_id }}</a>
+                        </label>
+
+                    </td>
+                    <td style="width: 10%">{{ dic.short_name }}</td>
+                    <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{ dic.taxon_id }}&lvl=3&lin=f&keep=1&srchmode=1&unlock" target="_blank">{{ dic.organism }}</a></td>
+                    <td>{{ dic.rnai_inhibited }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+    {% endwith %}
+    </form>
+{% endfor %}
+</div>
+
+</body>
+<script src="/static/js/jquery-2.1.0.js"></script>
+<script src="/static/js/amazeui.min.js"></script>
+ <script src="/static/js/amazeui.datatables.min.js"></script>
+<script>
+    $('.span_click').on('click', function () {
+        var len = this.className
+        ls = this
+        if(len.split(' ').length == 2){
+
+            {#this.className = 'am-icon-plus-square-o span_click';#}
+            this.className = 'am-icon-plus-square-o span_click  am-collapsed';
+            var btn = document.getElementById('button_'+this.id.substr(1));
+            btn.style.display='none';
+            var inp = document.getElementById('licheck_'+this.id.substr(6));
+            inp.style.display='none';
+
+        }else {
+            {#this.className = 'am-icon-minus-square-o span_click';#}
+            this.className = 'span_click am-icon-minus-square-o';
+            var btn = document.getElementById('button_'+this.id.substr(1));
+            btn.style.display='block';
+            var inp = document.getElementById('licheck_'+this.id.substr(6));
+            inp.style.display='block';
+        }
+        {#tr.removeClass('shown');#}
+        {#r.addClass('shown');#}
+    });
+    function quanxuan(aa){
+		var checked = $('#'+ aa.id).is(":checked");
+		if(checked){
+			$('.'+aa.id).prop("checked","checked");
+		}else{
+			$('.'+aa.id).prop("checked",checked);
+		}
+	}
+</script>
+
+</html>

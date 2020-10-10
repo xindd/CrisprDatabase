@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>SRGIdb</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <link rel="alternate icon" type="image/png" href="/static/imgs/logo/title-icon.png">
+  <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/static/css/app.css" />
+  <link rel="stylesheet" href="/static/css/jquery.typeahead.css" />
+<style>
+    .logolist img{
+        width: 60px;
+        height: 40px;
+
+    }
+    .logolist li{
+        float: left;
+        background: #274472;
+        margin-left: 5px;
+        border-radius: 4px;
+    }
+    ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+</style>
+    {% block cssblock %}{% endblock %}
+</head>
+<body>
+<header id="topbar" class="am-topbar am-topbar-fixed-top" style="margin-bottom: 0px">
+  <div class="am-container" >
+    <div class="am-topbar-collapse" id="collapse-head">
+    	<h1 class="am-topbar-brand">
+	      <a href="/VSR/index/">SRGIdb</a>
+	    </h1>
+      <ul class="am-nav am-nav-pills am-topbar-nav">
+        <li {%if request.path == '/VSR/index/' %}class="am-active" {% endif %}><a href="/VSR/index/">Home</a></li>
+        <li {%if request.path == '/VSR/search/'%}class="am-active"{% endif %}><a href="/VSR/search/">Search</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+             Visualize <span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+              <li><a href="/VSR/visualize/structure">Structure View</a></li>
+              <li><a href="/VSR/visualize/mechanism">Mechanism View</a></li>
+            </ul>
+        </li>
+        <li {%if request.path == '/deposit/'%}class="am-active"{% endif %}><a href="/VSR/deposit/">Deposit</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+             Browse <span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+              <li><a href="/VSR/browse/Anti-CRISPRs">Anti-CRISPRs</a></li>
+              <li><a href="/VSR/browse/VSR">VSR</a></li>
+              <li><a href="/VSR/browse/class">Statistics</a></li>
+            </ul>
+        </li>
+      <li {%if request.path == '/VSR/analyze/' %}class="am-active" {% endif %}><a href="/VSR/analyze/">Analyze</a></li>
+      <li {%if request.path == '/VSR/download/'%}class="am-active"{% endif %}><a href="/VSR/download/">Download</a></li>
+      <li {%if request.path == '/VSR/help/'%}class="am-active"{% endif %}><a href="/VSR/help/">Help</a></li>
+      </ul>
+        <form action="/VSR/analyze/search" method="post" name="" class="am-form-inline" role="search" id="searchform" data-am-validator style="float: right;width: 270px; margin-top: 11px;">
+                            {% csrf_token %}
+                                <div class="typeahead__container am-form-group">
+                                    <div class="typeahead__field">
+                                        <span class="typeahead__query">
+                                            <input class="js-typeahead"
+                                                  name="keywords"
+                                                   type="search"
+                                                   autofocus
+                                                   autocomplete="off" required/>
+                                            <input type='hidden' id="cla" name="classname"/>
+                                        </span>
+
+                                        <span class="typeahead__button">
+                                            <button type="submit">
+                                                <span class="typeahead__search-icon"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+
+    </div>
+  </div>
+</header>
+{% block second_part %}{% endblock %}
+{% block third_part %}{% endblock %}
+<footer class="footer">
+  <div class="am-container">
+    <p>2018,CopyRight © College of Bioinformatics Science and Technology, Harbin Medical University, China.</p>
+  </div>
+</footer>
+<script src="/static/js/jquery-2.1.0.js"></script>
+<script src="/static/js/amazeui.min.js"></script>
+<script src="/static/js/jquery.typeahead.js"></script>
+<script src="/static/js/searchdata.js"></script>
+
+
+{% block jsblock %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-download"></span> Data Downloads
+                    </div>
+                </div>
+                <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-12">
+                        	<table class="am-table am-table-striped  am-table-compact am-table-hover" id="table-list" style="font-size: smaller;">
+                              <thead>
+                                <tr>
+                                    <th style="width: 30%">File</th>
+                                    <th style="width: 70%">Description</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                                <tr>
+                                    <td><a href="/static/downloadfile/Anti_CRISPR_proteins_annotation.xlsx"  download="Anti_CRISPR_proteins_annotation.xlsx">Annotations of anti-CRISPRs (Acrs)</a></td>
+                                    <td>Annotations of the collected anti-CRISPRs from publications including family, type, protein accession, source organism, protein and DNA sequence, structures, interactors, mechanism of action, references, genome location, genome island and prophage annotation.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/RNAi_suppressors_VSR_annotation.xlsx" download="RNAi_suppressors_VSR_annotation.xlsx">Annotations of VSRs</a></td>
+                                    <td>Annotations of the collected VSRs from publications and ViralZone (Uniprot) database including name, type, Uniprot protein accession, source organism, protein sequence, structures, interactors, mechanism of action, references, and genome location.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/Anti_CRISRPs_protein_sequences.faa" download="Anti_CRISRPs_protein_sequences.faa">Anti-CRISPR protein sequences</a></td>
+                                    <td>A fasta file of all collected anti-CRISPR protein sequences</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/VSR_protein_sequences.faa" download="VSR_protein_sequences.faa">VSR protein sequences</a></td>
+                                    <td>A fasta file of all collected VSR protein sequences</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/Anti_CRISRPs_nucleotide_sequences.fna" download="Anti_CRISRPs_nucleotide_sequences.fna">Anti-CRISPR nucleotide sequences</a></td>
+                                    <td>A fasta file of all collected anti-CRISPR nucleotide sequences</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/Anti_Newick.zip" download="Anti_Newick.zip">phylogenetic analysis of protein sequences in each ACR family</a></td>
+                                    <td>The Newick output format of the phylogenetic analysis of protein sequences in each ACR family</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/Anti_CRISPR_Neighbourhood_annotation.xlsx" download="Anti_CRISPR_Neighbourhood_annotation.xlsx">Genomic neighborhood annotation of each ACR</a></td>
+                                    <td>The annotation of the genomic neighborhood (5 proteins upstream or downstream) of each anti-CRISPR protein.</td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/static/downloadfile/procedure.rar" download="procedure.rar">An in-house python script for sneighborhood analysis of an anti-CRISPR</a></td>
+                                    <td>Lots of anti-CRISPR genes were found to share a common genomic neighborhood putative transcriptional regulator (helix-turn-helix domain) was found downstream of known phage anti-CRISPR gene loci some anti-CRISPRs were within a small operon (two to five genes) of highly conserved gene order</td>
+                                </tr>
+                            </tbody>
+                            </table>
+
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-12">
+                                <div class="am-panel-bd" style="color: #31708f;background-color: #d9edf7;border-color: #bce8f1;">
+                                    <i class="am-icon-info-circle"></i>
+                                    Please NOTE that in the NCBI taxonomy database two types of taxonomy ids are used,
+                                    <ul style="padding-left: 40px">
+                                        <li style="list-style: disc;">taxon_id: refers to internal unique id used by NCBI taxonomy, while </li>
+                                        <li style="list-style: disc;">ncbi_taxon_id: refers to the *REAL* taxonomy id of a taxnomy entity.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

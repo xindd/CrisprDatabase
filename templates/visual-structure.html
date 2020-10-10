@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="/static/css/amazeui.tree.min.css"/>
+    <style>
+    .am-ucheck-icons {
+    top: 7px;
+    }
+    iframe {
+		width:100%;
+		margin:0 0 1em;
+		border:0;
+	}
+    </style>
+{% endblock %}
+{% block second_part %}
+
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+{#  	<div class="tpl-portlet-components am-btn-group">#}
+        <button id="acrs" class="am-btn am-btn-primary am-active">
+          <i class="am-icon-sitemap"></i>
+          PDB structures of ACRs
+        </button>
+        <button id="plant" class="am-btn am-btn-primary ">
+          <i class="am-icon-align-center"></i>
+          PDB structures of Plant VSRs
+        </button>
+        <button id="insect" class="am-btn am-btn-primary">
+          <i class="am-icon-sliders"></i>
+          PDB structures of Insect VSRs
+        </button>
+        <button id="mammal" class="am-btn am-btn-primary">
+          <i class="am-icon-sitemap"></i>
+          PDB structures of Mammal VSRs
+
+        </button>
+
+         <iframe src="acrs" id="iframeclass"  frameborder="0" scrolling="no"></iframe>
+{#    </div>#}
+  </div>
+</div>
+
+{% endblock %}
+{% block jsblock %}
+
+
+    <script>
+    function setIframeHeight(iframe) {
+			if (iframe) {
+				var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+				aaaa=iframeWin
+				if (iframeWin.document.body) {
+					iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+				}
+			}
+		};
+    window.onload = function () {
+        setIframeHeight(document.getElementById('iframeclass'));
+    };
+    $(function(){
+    　　$("#acrs").click(function(){
+    　　　　 $("#iframeclass").attr("src",'acrs').ready();
+    　　});
+        $("#plant").click(function(){
+    　　　　 $("#iframeclass").attr("src",'plant').ready();
+    　　});
+        $("#insect").click(function(){
+    　　　　 $("#iframeclass").attr("src",'insect').ready();
+    　　});
+         $("#mammal").click(function(){
+    　　　　 $("#iframeclass").attr("src",'mammal').ready();
+
+    　　});
+         $(".am-container button").click(function(){
+            $(this).addClass("am-active").siblings().removeClass("am-active")
+        });
+    })
+</script>
+{% endblock %}

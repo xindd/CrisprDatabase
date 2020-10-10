@@ -1,0 +1,265 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+{#  	<div class="tpl-portlet-components">#}
+    <h1 style="margin-left: 20px">
+                Detail information of VSR
+              </h1>
+        <div class="am-panel-group am-u-lg-12" id="accordion1">
+          <div class="am-panel  am-panel-primary">
+            <div class="am-panel-hd">
+              <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion1', target: '#do-not-say-1'}">
+                General information
+              </h4>
+            </div>
+            <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+              <div class="am-panel-bd">
+                <table class="am-table am-table-striped" style="word-break:break-all">
+                        <tbody>
+                            <tr>
+                                <td style="width: 220px;">VSR ID:</td>
+                                <td>{{ dataset.rss_id }}</td>
+                            </tr>
+                            <tr>
+                                <td>Short_name:</td>
+                                <td>{{ dataset.short_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>Accession(Uniprot):</td>
+                                <td>
+                                    <a href="http://www.uniprot.org/uniprot/{{ dataset.accession }}">
+                                        {{ dataset.accession }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Locus_tag:</td>
+                                <td>
+                                    <a href="http://www.uniprot.org/uniprot/{{ dataset.accession }}">
+                                    {{ dataset.locus_tag }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>RNAi_inhibited:</td>
+                                <td>{{ dataset.rnai_inhibited }}</td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td>{{ dataset.class_field }}</td>
+                            </tr>
+                            <tr>
+                                <td>Organism:</td>
+                                <td>
+                                    <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id={{ dataset.taxon_id }}&lvl=3&lin=f&keep=1&srchmode=1&unlock">
+                                        {{ dataset.organism }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Family, Genus:</td>
+                                <td>
+                                    <a href="{{ dataset.viralzone }}">
+                                        {{ dataset.family_genus }}
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Protein sequence:</td>
+                                <td>
+                                    {{ dataset.protein_sequence }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Size aa</td>
+                                <td>{{ dataset.size_aa_field }}</td>
+                            </tr>
+                        <tr>
+                            <td>Validated:</td>
+                            <td>
+{#                            {{ dataset.tested }}#}
+                                {% if dataset.tested != 'Yes' %}
+                                    By similarity
+                                {% else %}
+                                    {{ dataset.tested }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+        </div>
+{#    {% if dataset.viralzone != '' %}#}
+{#        <div class="am-panel-group am-u-lg-12" id="accordion2">#}
+{#          <div class="am-panel am-panel-primary">#}
+{#            <div class="am-panel-hd">#}
+{#              <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion2', target: '#do-not-say-2'}">#}
+{#                Virus genome  information#}
+{#              </h4>#}
+{#            </div>#}
+{#              <div id="do-not-say-2" class="am-panel-collapse am-collapse am-in">#}
+{#                  <div class="am-panel-bd" style="overflow: hidden">#}
+{#                       <div style="width:100%;height:1600px;margin:-153px 0px 0px -10px;">#}
+{#                            <iframe src="{{ dataset.viralzone }}" width="100%" height="100%"  frameborder="0" scrolling="no" ></iframe>#}
+{#                       </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#            </div>#}
+{#          </div>#}
+{#    {% endif %}#}
+        <div class="am-panel-group am-u-lg-12" id="accordion3">
+          <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+              <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion3', target: '#do-not-say-3'}">
+                  Structure & Interaction information
+              </h4>
+            </div>
+            <div id="do-not-say-3" class="am-panel-collapse am-collapse am-in">
+              <div class="am-panel-bd">
+
+                    <table class="am-table am-table-striped">
+                    <tbody>
+                        <tr>
+                             <td style="width: 220px;">Structure:</td>
+                            <td>
+                                {% if dataset.structure_pdb_code_field != '' %}
+                                    {{ dataset.structure_pdb_code_field }}
+                                {% else %}
+                                    --
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Interactor (DIP):</td>
+                            <td>
+{#                                {% if dataset.structure_pdb_code_field.dip != '' %}#}
+{#                                <a href="http://dip.doe-mbi.ucla.edu/dip/Browse.cgi?ID={{ dataset.structure_pdb_code_field.dip }}">#}
+{#                                    <img src="/static/imgs/dip-log.png">#}
+{#                                </a>#}
+{#                                {% else %}#}
+                                    --
+{#                                {% endif %}#}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Interactor (InAct):</td>
+                            <td>
+{#                                {% if AntiAnnotationInfo.intact != '' %}#}
+{#                                <a href="https://www.ebi.ac.uk/intact/interactors/id:{{ AntiAnnotationInfo.intact }}">#}
+{#                                    <img src="/static/imgs/lnact_logo.png">#}
+{#                                </a>#}
+{#                                {% else %}#}
+                                    --
+{#                                {% endif %}#}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="am-panel-group am-u-lg-12" id="accordion4">
+            <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+              <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion4', target: '#do-not-say-4'}">
+                  Mechanism of Action information
+              </h4>
+            </div>
+             <div id="do-not-say-4" class="am-panel-collapse am-collapse am-in">
+              <div class="am-panel-bd">
+                    <table class="am-table am-table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Short_name:</td>
+                            <td>{{ dataset.short_name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Organism:</td>
+                            <td>{{ dataset.organism }} </td>
+                        </tr>
+                        <tr>
+                            <td>Mechanism of action:</td>
+                            <td>
+                                {% autoescape off %}
+                                {{ dataset.mechanism_of_action}}
+                                {% endautoescape %}
+{#                                {% for pub in dataset.mechanism_of_action.pubid %}#}
+{#                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/{{ pub }}">#}
+{#                                        <span class="am-icon-file-text-o"></span>#}
+{#                                    </a>#}
+{#                                {% endfor %}#}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Strategy:</td>
+                            <td>
+{#                            {{ mechan }}#}
+                                {% if mechan == '' %}
+                                    Unknow
+                                {% else %}
+                                    {{ mechan.strategy }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pubmed:</td>
+                            <td>
+                                {% if mechan == '' %}
+                                    --
+                                {% else %}
+                                    {% for ref in mechan.reference %}
+                                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ ref }}">
+                                    {{ ref }}
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                  {% if mechan != '' and pic != '' %}
+
+                  <div class="tpl-portlet-components" id="{{ mechan.family_genus }}" style="border: 0;padding: 0">
+                    <div class="portlet-title">
+                        <div class="caption font-green bold">
+                            {{ pic.title }}
+                        </div>
+                    </div>
+
+                   <div class="tpl-block ">
+                        <div id="introduciton">
+                                <div class="" style="width: 40%;float: left;">
+                                    <img src="/static/imgs/VSR_mechanisms/{{ pic.figure }}.png" style="width: 100%;height: 400px;border: 1px solid #274472;" data-am-scrollspy="{animation:'slide-left', repeat: true}"/>
+                                </div>
+                                <div class="" style="width: 60%;float: left;padding: 0px 20px;">
+                                    <p style="margin:0px;"><b style="color: blue">Family genus: </b>{{ mechan.family_genus }};</p>
+                                    <p style="margin: 5px 0px;"><b style="color: blue">Description: </b></p>
+                                    <p style="margin: 5px 0px;font-size: smaller;"><span class="am-icon-leaf am-icon-sm" style="color: green;margin-left: 5px; margin-right: 5px"></span>{{ pic.description }}</p>
+                                    <p style="margin: 5px 0px;"><b style="color: blue">References: </b></p>
+                                    <p style="margin: 5px 0px;font-size: smaller;"><span class="am-icon-leaf am-icon-sm" style="color: green;margin-left: 5px; margin-right: 5px"></span>{{ pic.references }}</p>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+                  {% endif %}
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+    </div>
+{#  </div>#}
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

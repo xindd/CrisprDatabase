@@ -1,0 +1,38 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/js/yui/build/cssfonts/fonts-min.css" />
+	<script type="text/javascript" src="/js/raphael/raphael-min.js" ></script>
+	<script type="text/javascript" src="/js/yui/build/yui/yui.js"></script>
+	<script type="text/javascript" src="/js/jsphylosvg-min.js"></script>
+	<!-- unitip -->
+	<link rel="stylesheet" type="text/css" href="/js/unitip/css/unitip.css" >
+	<script type="text/javascript" src="/js/unitip/js/unitip.js"></script>
+	<script type="text/javascript">
+	window.onload = function(){
+		YUI().use('oop', 'json-stringify', 'io-base', 'event', 'event-delegate', function(Y){
+			var uri = "/trees/2-coffee.xml";
+			function complete(id, o, args) {
+				var data = o.responseXML; // Response data.
+				var dataObject = {
+							xml: data,
+							fileSource: true
+						};
+				Smits.PhyloCanvas.Render.Style.line.stroke = 'rgb(0,0,255)';	// Color lines blue
+				Smits.PhyloCanvas.Render.Style.text["font-size"] = 16;			// Increase font size to 16pt
+				phylocanvas = new Smits.PhyloCanvas(
+					dataObject,
+					'svgCanvas',
+					800, 800
+				);
+				init(); //unitip
+			};
+			Y.on('io:complete', complete, Y);
+			var request = Y.io(uri);
+		});
+	};
+	</script>
+</head>
+<body>
+	<div id="svgCanvas"> </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jiantou.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-selected-btn {
+    width: auto;
+}
+    </style>
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+      {% if error == 1 %}
+      <div class="am-panel am-panel-warning">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#basew'}">
+                  Warning
+                </h4>
+              </div>
+            <div id="basew" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        Please enter the correct data
+                        <a href="/VSR/help">help</a>
+                    </div>
+                </div>
+                </div>
+              </div>
+        </div>
+      {% endif %}
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  Anti-CRISPR search result (number: {{ antilen }})
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-12">
+                            {% if antilen == 0 %}
+                            none
+                            {% else %}
+                            <table class="am-table am-table-striped  am-table-compact am-table-hover" id="table-list" style="font-size: smaller;">
+                              <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>family</th>
+                                    <th>organism</th>
+                                    <th>validated</th>
+                                    <th>reference</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                                {% for anti in antires %}
+                                <tr>
+                                    <td><a href="/VSR/browse_detail/{{ anti.accession }}" target="_blank">{{ anti.id }}</a></td>
+                                    <td>{{ anti.family }}</td>
+                                    <td>{{ anti.source_organism }}</td>
+                                    <td>{{ anti.validated }}</td>
+                                    <td>{{ anti.reference }}</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+        </div>
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  VSR search result (number: {{ vsrlen }})
+                </h4>
+            </div>
+            <div id="base2" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <div class="tpl-block">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-12">
+                            {% if vsrlen == 0 %}
+                            none
+                            {% else %}
+                            <table class="am-table am-table-striped  am-table-compact am-table-hover" id="table-list" style="font-size: smaller;">
+                              <thead>
+                                <tr>
+                                    <th>RSS_ID</th>
+                                    <th>Short_name</th>
+                                    <th>RNAi_inhibited</th>
+                                    <th>Accession</th>
+                                    <th>ViralZone</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                                {% for vsr in vsrres %}
+                                <tr>
+                                    <td><a href="/VSR/browse_VSR_detail/{{ vsr.rss_id }}" target="_blank">{{ vsr.rss_id }}</a></td>
+                                    <td>{{ vsr.short_name }}</td>
+                                    <td>{{ vsr.rnai_inhibited }}</td>
+                                    <td>{{ vsr.accession }}</td>
+                                    <td><a href="{{ vsr.viralzone }}">ViralZone</a></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block jsblock %}
+{% endblock %}

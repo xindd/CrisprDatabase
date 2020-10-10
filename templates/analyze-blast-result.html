@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jiantou.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-selected-btn {
+    width: auto;
+}
+    </style>
+{% endblock %}
+<div class="am-panel am-panel-default">
+      <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+          Enter Query Sequence
+        </h4>
+      </div>
+      <div id="base1" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+
+        </div>
+      </div>
+  </div>
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  Blastp results with verified anti-CRISPRs in the same family
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    	<table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-list">
+                          <thead>
+                            <tr>
+                                <th>IDs</th>
+                                <th>Q.start</th>
+                                <th>Q.end</th>
+                                <th>S.start</th>
+                                <th>S.end</th>
+                                <th>Identity</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                                <td>Jena Gaines</td>
+                                <td>Office Manager</td>
+                                <td>London</td>
+                                <td>30</td>
+                                <td>2008/12/19</td>
+                                <td>$90,560</td>
+                            </tr>
+                            <tr>
+                                <td>Quinn Flynn</td>
+                                <td>Support Lead</td>
+                                <td>Edinburgh</td>
+                                <td>22</td>
+                                <td>2013/03/03</td>
+                                <td>$342,000</td>
+                            </tr>
+                            <tr>
+                                <td>Charde Marshall</td>
+                                <td>Regional Director</td>
+                                <td>San Francisco</td>
+                                <td>36</td>
+                                <td>2008/10/16</td>
+                                <td>$470,600</td>
+                            </tr>
+                        </tbody>
+				</table>
+                </div>
+              </div>
+        </div>
+      <form class="am-form am-form-horizontal" method="post" action="/VSR/analyze_run/{{ jobid }}">
+          {% csrf_token %}
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  Anti-CRISPR candidate neighborhood analysis
+                </h4>
+            </div>
+            <div id="base2" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <p>Lots of anti-CRISPR genes were found to share a common genomic neighborhood</p>
+                    <p><i class="am-icon-circle" style="margin-left: 10px;margin-right: 5px;"></i>putative transcriptional regulator (<span style="color: red">helix-turn-helix domain</span>) was found downstream of known phage anti-CRISPR gene loci</p>
+                    <p><i class="am-icon-circle" style="margin-left: 10px;margin-right: 5px;"></i>some anti-CRISPRs were within <span style="color: red">a small operon (two to five genes) of highly conserved gene order</span></p>
+                    <button type="submit" class="am-btn am-btn-primary" style="width: 120px;">RUN</button>
+                </div>
+            </div>
+        </div>
+      </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}

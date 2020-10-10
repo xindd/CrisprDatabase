@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <style>
+    .am-table {
+        border-collapse: collapse;
+    }
+    .am-radio, .am-checkbox {
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title {
+        border-bottom: 0px;
+        border-top: 0;
+        padding: 0;
+        min-height: 0;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title .caption {
+        padding: 0;
+    }
+
+    </style>
+{% endblock %}
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+      <div class="am-container">
+        <div class="tpl-portlet-components">
+
+            <form class="am-form" data-am-validator>
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        Acre
+                    </div>
+                    <div class="" style="float: right">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Align</button>
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Retrieve</button>
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Map2NucleicAcid</button>
+                    </div>
+                </div>
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" id="Acre" data-am-ucheck onclick="quanxuan(this)"> All
+                                </label>
+                            </th>
+                            <th>attr</th>
+                            <th>link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="Acre" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="Acre" name="cbx" value="im" data-am-ucheck> iMac
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="Acre" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="Acre" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+            <form class="am-form" data-am-validator>
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        AcrF1
+                    </div>
+                    <div class="" style="float: right">
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Align</button>
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Retrieve</button>
+                        <button type="button" class="am-btn am-btn-default am-btn-xs">Map2NucleicAcid</button>
+                    </div>
+                </div>
+                <table class="am-table am-table-bordered am-table-radius am-table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <label class="am-checkbox-inline">
+                                    <input type="checkbox" id="AcrF1" data-am-ucheck onclick="quanxuan(this)"> All
+                                </label>
+                            </th>
+                            <th>attr</th>
+                            <th>link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="AcrF1" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="AcrF1" name="cbx" value="im" data-am-ucheck> iMac
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="AcrF1" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="am-checkbox">
+                                  <input type="checkbox" class="AcrF1" name="cbx" value="im" data-am-ucheck> P0C783
+                                </label>
+                            </td>
+                            <td>Cucumber mosaic virus (strain FNY) (CMV)</td>
+                            <td><a href="http://www.uniprot.org/uniprot/P0C783">more</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block jsblock %}
+<script>
+    function quanxuan(aa){
+		var checked = $('#'+ aa.id).is(":checked");
+		if(checked){
+			$('.'+aa.id).prop("checked","checked");
+		}else{
+			$('.'+aa.id).prop("checked",checked);
+		}
+	}
+</script>
+{% endblock %}

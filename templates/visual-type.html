@@ -1,0 +1,140 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+<style>
+.am-thumbnail-caption h3{
+    text-align: center;
+}
+.am-thumbnail-caption img{
+    margin-left: 100px;
+    width: 120px;
+    height: 120px;
+}
+.am-thumbnail{
+    border: 0px;
+}
+.am-table{
+    font-size: smaller;
+}
+</style>
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+                <div class="tpl-block ">
+                    <div class="am-g">
+                      <div class="am-u-sm-4">
+                        <div class="am-thumbnail">
+                          <div class="am-thumbnail-caption">
+                            <h3>Plant VSRs</h3>
+                            <img src="/static/imgs/shucai.png">
+                              <div style="overflow-x: auto;height: 600px;">
+                              <table class="am-table am-table-bordered">
+                                  <thead>
+                                  <tr>
+                                      <th>RSS_ID</th>
+                                      <th>Short name</th>
+                                  </tr>
+                                  </thead>
+                                        <tbody>
+                                        {% for plant in plantdata %}
+                                            <tr>
+                                                <td><a href="/VSR/browse_VSR_detail/{{ plant.rss_id }}" target="_blank">{{ plant.rss_id }}</a></td>
+                                                <td>{{ plant.short_name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="am-u-sm-4">
+                        <div class="am-thumbnail">
+                          <div class="am-thumbnail-caption">
+                            <h3>Insect VSRs</h3>
+                            <img src="/static/imgs/mayi.png">
+                            <div style="overflow-x: auto;height: 150px;">
+                                   <table class="am-table am-table-bordered">
+                                  <thead>
+                                  <tr>
+                                      <th>RSS_ID</th>
+                                      <th>Short name</th>
+                                  </tr>
+                                  </thead>
+                                        <tbody>
+                                        {% for insect in insectdata %}
+                                            <tr>
+                                                <td><a href="/VSR/browse_VSR_detail/{{ insect.rss_id }}" target="_blank">{{ insect.rss_id }}</a></td>
+                                                <td>{{ insect.short_name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="am-thumbnail">
+                          <div class="am-thumbnail-caption">
+                            <h3>Mammal VSRs</h3>
+                            <img src="/static/imgs/zhu.png">
+                            <div style="overflow-x: auto;height: 220px;">
+                                  <table class="am-table am-table-bordered">
+                                  <thead>
+                                  <tr>
+                                      <th>RSS_ID</th>
+                                      <th>Short name</th>
+                                  </tr>
+                                  </thead>
+                                        <tbody>
+                                        {% for mmal in mammaldata %}
+                                            <tr>
+                                                <td><a href="/VSR/browse_VSR_detail/{{ mmal.rss_id }}" target="_blank">{{ mmal.rss_id }}</a></td>
+                                                <td>{{ mmal.short_name }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="am-u-sm-4">
+                        <div class="am-thumbnail">
+                          <div class="am-thumbnail-caption">
+                            <h3>ACRs</h3>
+                            <img src="/static/imgs/bingdu.png">
+                            <div style="overflow-x: auto;height: 600px;">
+                                  <table class="am-table am-table-bordered">
+                                  <thead>
+                                  <tr>
+                                      <th>ID</th>
+                                      <th>Accession</th>
+                                  </tr>
+                                  </thead>
+                                        <tbody>
+                                        {% for acr in acrdata %}
+                                            <tr>
+                                                <td><a href="/VSR/browse_detail/{{ acr.accession }}" target="_blank">{{ acr.id }}</a></td>
+                                                <td>{{ acr.accession }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+  </div>
+</div>
+{% endblock %}
+{% block jsblock %}
+{% endblock %}

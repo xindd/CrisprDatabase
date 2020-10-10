@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/static/css/app.css" />
+    <style>
+        .am-table {
+        border-collapse: collapse;
+    }
+    .am-radio, .am-checkbox {
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title {
+        border-bottom: 0px;
+        border-top: 0;
+        padding: 0;
+        min-height: 0;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title .caption {
+        padding: 0;
+    }
+    .caption{
+        margin-bottom: 10px;
+        border-bottom: 2px solid;
+        margin-top: 15px;
+    }
+        .general_table tr td:first-child{
+            width: 20%;
+        }
+        .general_table tr td:last-child{
+            width: 20%;
+        }
+        .span_click{
+            margin-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <table class="am-table am-table-bordered am-table-compact" id="table-list">
+        <thead>
+            <tr>
+                <th>rss_id</th>
+                <th>short_name</th>
+                <th>organism</th>
+                <th>family_genus</th>
+                <th>rnai_inhibited</th>
+                <th>mechanism_of_action</th>
+            </tr>
+        </thead>
+	</table>
+
+</body>
+<script src="/static/js/jquery-2.1.0.js"></script>
+<script src="/static/js/amazeui.min.js"></script>
+ <script src="/static/js/amazeui.datatables.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function() {
+    var dataSet = {{ datalist | safe}};
+    var table = $('#table-list').DataTable(
+            {
+                data: dataSet,
+                columns: [
+                    {"data": "rss_id"},
+                    {"data": "short_name"},
+                    {"data": "organism"},
+                    {"data": "family_genus"},
+                    {"data": "rnai_inhibited"},
+                    {"data": "mechanism_of_action"}
+                    ],
+                "order": [[ 0, "asc" ]],
+                language: {
+                    "lengthMenu": "show _MENU_ entries",
+                         "zeroRecords": "No matching records found",
+                         "info": "showing _PAGE_  ( all _PAGES_  )",
+                         "infoEmpty": "No matching records found",
+                         "infoFiltered": "(filtered from _MAX_ total entries)",
+                         "sSearch": "Search",
+                         "oPaginate": {
+                                                "sPrevious":"Previous",
+                                "sNext": "Next"
+                                            },
+                     }
+                }
+        );
+    } );
+    </script>
+</html>

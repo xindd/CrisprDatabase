@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="/static/css/amazeui.tree.min.css"/>
+    <style>
+    .am-ucheck-icons {
+    top: 7px;
+    }
+    iframe {
+		width:100%;
+		margin:0 0 1em;
+		border:0;
+	}
+    </style>
+{% endblock %}
+{% block second_part %}
+
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+        <button id="General" class="am-btn am-btn-primary am-active">
+          <i class="am-icon-align-center"></i>
+          General
+        </button>
+        <button id="plant" class="am-btn am-btn-primary">
+          <i class="am-icon-sliders"></i>
+          VSRs of plant RNAi
+        </button>
+        <button id="Insect" class="am-btn am-btn-primary">
+          <i class="am-icon-sitemap"></i>
+          VSRs of Insect RNAi
+        </button>
+        <button id="mamal" class="am-btn am-btn-primary">
+          <i class="am-icon-sitemap"></i>
+          VSRs of mammal RNAi
+        </button>
+         <iframe src="General" id="iframeclass"  frameborder="0" height="800px"></iframe>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block jsblock %}
+
+
+    <script>
+    {#function setIframeHeight(iframe) {#}
+		{#	if (iframe) {#}
+		{#		var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;#}
+		{#		aaaa=iframeWin#}
+		{#		if (iframeWin.document.body) {#}
+		{#			iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;#}
+		{#		}#}
+		{#	}#}
+		{#;#}
+    {#window.onload = function () {#}
+    {#    setIframeHeight(document.getElementById('iframeclass'));#}
+    {#};#}
+    $(function(){
+    　　$("#General").click(function(){
+    　　　　 $("#iframeclass").attr("src",'General').ready();
+    　　});
+        $("#plant").click(function(){
+    　　　　 $("#iframeclass").attr("src",'plant').ready();
+    　　});
+        $("#Insect").click(function(){
+    　　　　 $("#iframeclass").attr("src",'Insect').ready();
+    　　});
+         $("#mamal").click(function(){
+    　　　　 $("#iframeclass").attr("src",'mamal').ready();
+
+    　　});
+         $(".tpl-portlet-components button").click(function(){
+            $(this).addClass("am-active").siblings().removeClass("am-active")
+        });
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+{% load splitfile %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="/static/css/app.css" />
+<style>
+.spanposition{
+    margin-left: 100px;
+}
+.structureinfo p{
+   margin: 5px;
+}
+.am-slider-d1 .am-slider-desc {
+    background-color: #274472;
+}
+</style>
+</head>
+<body>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container" style="width: 100%">
+  {% for rowdata in dataset %}
+  	<div class="tpl-portlet-components">
+        <div class="tpl-block " >
+            <div class="am-u-lg-5 structureinfo">
+                <p>ID: <a href="/VSR/browse_detail/{{ rowdata.accession }}" target="_blank">{{ rowdata.id }}</a>
+                <p>Family: {{ rowdata.family }}</p>
+                <p>Accession: <a href="http://www.uniprot.org/uniprot/{{ rowdata.uniprot_entry }}" target="_blank">{{ rowdata.uniprot_entry }}</a></p>
+                <p>PDB ID:
+                    {% for k in rowdata.pdbstructure %}
+                    <a href="https://www.rcsb.org/structure/{{ k }}" target="_blank">{{ k }}</a>
+                        {% endfor %}
+                </p>
+                <p>Length: {{ rowdata.size_aa_field }}</p>
+                <p>
+                    Organism:
+{#                    <a href="{{ rowdata.viralzone}}"  target="_blank">#}
+                    {{ rowdata.organism}}
+{#                    </a>#}
+                </p>
+                <p>Anticrisprdb_id: {{ rowdata.anticrisprdb_id }}</p>
+            </div>
+            <div class="am-u-lg-6 am-u-lg-offset-1">
+                <div class="am-slider am-slider-d1" data-am-flexslider id="demo-slider-0" style=" border: 1px solid #274472;">
+                  <ul class="am-slides selful">
+                      {% for pdb in rowdata.pdbstructure %}
+                        <li>
+                            <img src="/static/imgs/protein_structure/{{ pdb }}.png" style="height: 240px"/>
+                            <div class="am-slider-desc">
+                                <span class="am-icon-cube">3D View:</span><a href="/VSR/structure_detail/{{ pdb }}" target="_blank">{{ pdb }}</a>
+                            </div>
+                        </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   {% endfor %}
+  </div>
+</div>
+</body>
+<script src="/static/js/jquery-2.1.0.js"></script>
+<script src="/static/js/amazeui.min.js"></script>
+</html>

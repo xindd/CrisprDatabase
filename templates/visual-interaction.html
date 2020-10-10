@@ -1,0 +1,279 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" href="/static/css/amazeui.slick.min.css" />
+<style>
+.spanposition{
+    margin-left: 100px;
+}
+.structureinfo p{
+   margin: 5px;
+}
+</style>
+
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                View interactors of VSRs
+            </div>
+        </div>
+    {% for data in leftinfo %}
+        <div class="tpl-block " style="height: 360px;border-bottom: 1px solid #eef1f5;padding: 20px 0px;">
+                <div class="am-u-lg-4 structureinfo">
+{#                    {% for key,value in data.items %}#}
+{#                        <p>{{ key }}: <a href="#">{{ value }}</a></p>#}
+{#                    {% endfor %}#}
+                    <p>Name: <a href="#">{{ data.1 }}</a></p>
+                    <p>Accession: <a href="#">{{ data.2 }}</a></p>
+                    <p>PDB ID: <a href="#">{{ data.5 }}</a></p>
+                    <p>Length: <a href="#">{{ data.3}}</a></p>
+                    <p>Organism: <a href="#">{{ data.4}}</a></p>
+                </div>
+                <div class="am-u-lg-8" style="height: 320px;overflow: auto;">
+{#                        <div id="ligraph" style="width: 540px;height: 300px"></div>#}
+                    <img src="/static/imgs/echarts.png">
+                </div>
+
+        </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+    <script src="/static/js/echarts.min.js"></script>
+<script>
+option = {
+    {#backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{#}
+    {#    offset: 0,#}
+    {#    color: '#f7f8fa'#}
+    {#, {#}
+    {#    offset: 1,#}
+    {#    color: '#cdd0d5'#}
+    {#]),#}
+    title: {
+        // text: "招标倾向性分析",
+        // subtext: "Truelore-Support",
+        top: "top",
+        left: "center"
+    },
+    legend: [{
+        {#// formatter: function(name) {#}
+        {#    // return echarts.format.truncateText(name, 40, '14px Microsoft Yahei', '…');#}
+        {#// },#}
+        tooltip: {
+            show: false
+        },
+        selectedMode: 'true',
+        bottom: 20,
+        data: ['1', '2', '3', '4', '5', '6', '7']
+    }],
+    toolbox: {
+        show: true,
+        feature: {
+            dataView: {
+                show: true,
+                readOnly: true
+            },
+            // restore: {
+            //     show: true
+            // },
+            saveAsImage: {
+                show: true
+            }
+        }
+    },
+    animationDuration: 1000,
+    animationEasingUpdate: 'quinticInOut',
+    series: [{
+        name: '招标倾向性分析',
+        type: 'graph',
+        layout: 'force',
+
+        force: {
+            repulsion: 500,
+            edgeLength: 120
+        },
+        data: [
+            {
+            "id": 6,
+            "name": "定性评审法",
+            "symbolSize": 53,
+            "category": "评标办法",
+            "draggable": "true",
+            "value": 10
+        },  {
+            "id": 14,
+            "name": "票决抽签",
+            "symbolSize": 45,
+            "category": "定标办法",
+            "draggable": "true",
+            "value": 10
+        }, {
+            "id": 15,
+            "name": "直接票决",
+            "symbolSize": 45,
+            "category": "定标办法",
+            "draggable": "true",
+            "value": 10
+        }, {
+            "id": 25,
+            "name": "特级",
+            "symbolSize": 45,
+            "category": "中标企业",
+            "draggable": "true",
+            "value": 10
+        }, {
+            "id": 26,
+            "name": "一级",
+            "symbolSize": 30,
+            "category": "中标企业",
+            "draggable": "true",
+            "value": 10
+        }, {
+            "id": 27,
+            "name": "二级",
+            "symbolSize": 25,
+            "category": "中标企业",
+            "draggable": "true",
+            "value": 10
+        }, {
+            "id": 28,
+            "name": "三级",
+            "symbolSize": 20,
+            "category": "中标企业",
+            "draggable": "true",
+            "value": 10
+
+        }],
+        links: [
+            {
+            "source": "0",
+            "target": "1"
+        }, {
+            "source": "0",
+            "target": "2"
+        }, {
+            "source": "0",
+            "target": "3"
+        }, {
+            "source": "0",
+            "target": "4"
+        }, {
+            "source": "0",
+            "target": "5"
+        }, {
+            "source": "1",
+            "target": "6"
+        }, {
+            "source": "1",
+            "target": "7"
+        }, {
+            "source": "1",
+            "target": "8"
+        }, {
+            "source": "2",
+            "target": "9"
+        }, {
+            "source": "2",
+            "target": "10"
+        }, {
+            "source": "2",
+            "target": "11"
+        }, {
+            "source": "3",
+            "target": "12"
+        }, {
+            "source": "6",
+            "target": "13"
+        }, {
+            "source": "6",
+            "target": "14"
+        }, {
+            "source": "6",
+            "target": "15"
+        }, {
+            "source": "7",
+            "target": "16"
+        }, {
+            "source": "7",
+            "target": "17"
+        }, {
+            "source": "8",
+            "target": "18"
+        }, {
+            "source": "9",
+            "target": "19"
+        }, {
+            "source": "9",
+            "target": "20"
+        }, {
+            "source": "10",
+            "target": "21"
+        }, {
+            "source": "10",
+            "target": "22"
+        }, {
+            "source": "11",
+            "target": "23"
+        }, {
+            "source": "12",
+            "target": "24"
+        }, {
+            "source": "14",
+            "target": "25"
+        }, {
+            "source": "14",
+            "target": "26"
+        }, {
+            "source": "14",
+            "target": "27"
+        }, {
+            "source": "14",
+            "target": "28"
+        }, {
+            "source": "14",
+            "target": "29"
+        }],
+        categories: [
+            {
+            'name': '项目类型'
+        }, {
+            'name': '评标办法'
+        }, {
+            'name': '父节点'
+        }, {
+            'name': '定标办法'
+        }, {
+            'name': '中标企业'
+        }],
+        focusNodeAdjacency: true,
+        roam: true,
+        label: {
+            normal: {
+                show: false,
+                position: 'top',
+            }
+        },
+        lineStyle: {
+            normal: {
+                color: 'source',
+                curveness: 0,
+                type: "solid"
+            }
+        }
+    },
+
+    ]
+};
+var mygraph = echarts.init(document.getElementById('ligraph'));
+mygraph.setOption(option)
+  </script>
+{% endblock %}

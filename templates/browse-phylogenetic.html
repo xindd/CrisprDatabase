@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <style>
+ #svgCanvas svg{
+     overflow: inherit;
+ }
+    text
+    {
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+        cursor :pointer; //
+        cursor :default;
+    }
+    tspan:hover{
+        fill: blue;
+    }
+</style>
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+        <div id="svgCanvas"> </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block jsblock %}
+<script type="text/javascript" src="/static/js/phylogentic/raphael-min.js"></script>
+	<script type="text/javascript" src="/static/js/phylogentic/jsphylosvg-min.js"></script>
+    <script>
+    $(document).ready(function(){
+         phylocanvas = new Smits.PhyloCanvas(
+            {
+                newick: {{ newick|safe }}
+            },
+            'svgCanvas',
+            700, {{ height|safe }}
+        );
+        var aa=phylocanvas.getSvg()
+        bb=aa.svg.canvas.getElementsByTagName('text');
+        for(var child=0;child<bb.length;child++){
+            var pdbname = bb[child].childNodes[0].textContent;
+            var homoname = pdbname.split('|');
+            if(homoname[0].indexOf('H')===-1){
+                bb[child].style.fill='red'
+            }else {
+                bb[child].style.fill='black'
+            }
+            bb[child].onclick = function(){
+                window.open('/VSR/browse_detail/' + homoname[1])
+            }
+            {#cc = bb[child]#}
+            {#bb[child].childNodes[0].textContent='<a href="/VSR/browse_detail/' + homoname[1] + '" target="_blank" title="click '+homoname[0]+' to detail">'+ pdbname+ ' </a>'#}
+        }
+    })
+
+
+    </script>
+
+{% endblock %}

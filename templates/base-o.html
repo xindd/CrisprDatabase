@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>SRGIdb</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <link rel="alternate icon" type="image/png" href="/static/imgs/logo/title-icon.png">
+  <link rel="stylesheet" href="/static/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/static/css/app.css" />
+  <link rel="stylesheet" href="/static/css/jquery.typeahead.css" />
+<style>
+    .logolist img{
+        width: 60px;
+        height: 40px;
+
+    }
+    .logolist li{
+        float: left;
+        background: #274472;
+        margin-left: 5px;
+        border-radius: 4px;
+    }
+    ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+</style>
+    {% block cssblock %}{% endblock %}
+</head>
+<body>
+<header id="topbar" class="am-topbar am-topbar-fixed-top" style="margin-bottom: 0px">
+  <div class="am-container" >
+    <div class="am-topbar-collapse" id="collapse-head">
+    	<h1 class="am-topbar-brand">
+	      <a href="#">SRGIdb</a>
+	    </h1>
+      <ul class="am-nav am-nav-pills am-topbar-nav">
+        <li {%if request.path == '/VSR/index/' %}class="am-active" {% endif %}><a href="/VSR/index/">Home</a></li>
+        <li {%if request.path == '/VSR/search/'%}class="am-active"{% endif %}><a href="/VSR/search/">Search</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+             Visualize <span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+              <li><a href="/VSR/visualize/structure">Structure View</a></li>
+{#              <li><a href="/VSR/visualize/interaction">Interaction View</a></li>#}
+              <li><a href="/VSR/visualize/mechanism">Mechanism View</a></li>
+{#              <li><a href="/VSR/visualize/type">Type View</a></li>#}
+            </ul>
+        </li>
+        <li {%if request.path == '/deposit/'%}class="am-active"{% endif %}><a href="/VSR/deposit/">Deposit</a></li>
+        <li class="am-dropdown" data-am-dropdown>
+            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+             Browse <span class="am-icon-caret-down"></span>
+            </a>
+            <ul class="am-dropdown-content">
+              <li><a href="/VSR/browse/Anti-CRISPRs">Anti-CRISPRs</a></li>
+              <li><a href="/VSR/browse/VSR">VSR</a></li>
+              <li><a href="/VSR/browse/class">Statistics</a></li>
+            </ul>
+        </li>
+      <li {%if request.path == '/VSR/analyze/' %}class="am-active" {% endif %}><a href="/VSR/analyze/">Analyze</a></li>
+{#        <li {%if request.path == '/browse/'%}class="am-active"{% endif %}><a href="/browse/">Browse</a></li>#}
+{#        <li class="am-dropdown" data-am-dropdown>#}
+{#            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">#}
+{#             Analyze <span class="am-icon-caret-down"></span>#}
+{#            </a>#}
+{#            <ul class="am-dropdown-content">#}
+{#              <li><a href="/VSR/analyze/sequence">Sequence Alignment</a></li>#}
+{#              <li><a href="#">Protein Alignment</a></li>#}
+{#              <li><a href="#">Structure Alignment</a></li>#}
+{#            </ul>#}
+{#        </li>#}
+{#        <li {%if request.path|slice:'12' == '/analyze'%}class="am-active"{% endif %}><a href="/analyze/">Analyze</a></li>#}
+        <li {%if request.path == '/VSR/download/'%}class="am-active"{% endif %}><a href="/VSR/download/">Download</a></li>
+        <li {%if request.path == '/VSR/help/'%}class="am-active"{% endif %}><a href="/VSR/help/">Help</a></li>
+      </ul>
+    <form action="/VSR/analyze/search" method="post" name="" class="am-topbar-form am-topbar-left am-form-inline" role="search" id="searchform" data-am-validator>
+                            {% csrf_token %}
+                            <div class="typeahead__container am-form-group">
+                                <div class="typeahead__field">
+                                    <span class="typeahead__query">
+                                        <input class="js-typeahead"
+                                              name="keywords"
+                                               type="search"
+                                               autofocus
+                                               autocomplete="off" required/>
+                                    </span>
+                                    <span class="typeahead__button">
+                                        <button type="submit">
+                                            <span class="typeahead__search-icon"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="am-input-group">
+                                <input id="hy" autocomplete="off" type="text" class="am-form-field" name="keywords" placeholder="Search by ID">
+                          <span class="am-input-group-btn">
+                            <button class="am-btn am-btn-primary" type="submit" id="searchButton" style="background-color: #274472;"><span class="am-icon-search"></span> </button>
+                          </span>
+                        </div>
+                </form>
+{#    #}
+    </div>
+  </div>
+</header>
+{#    <div class="get get-bg">#}
+{#      <div class="am-container ">#}
+{#        <div class="am-g">#}
+{#            <div id="logo" class="am-u-lg-3 am-u-md-3 am-u-sm-3" style="margin-top: 40px;">#}
+{##}
+{#                    <!--<a href="#"><img src="../imgs/top-background.jpg" alt="Logo"></a>-->#}
+{#                <p>SGRIdb#}
+{#                    <img src="/static/imgs/logo/srgidb.png">#}
+{#                </p>#}
+{#                <ul class="logolist">#}
+{#                    <li>#}
+{#                        <a href="http://www.rcsb.org/">#}
+{#                            <img src="/static/imgs/logo/pdb.png" alt="PDB">#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="http://www.uniprot.org/" target="_blank">#}
+{#                            <img src="/static/imgs/logo/uniprot.png" alt="uniprot">#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="https://viralzone.expasy.org/" target="_blank">#}
+{#                            <img src="/static/imgs/logo/viralzone.jpg" alt="viralzone">#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="http://www.microbiome-bigdata.com:10001/CRISPRminer/" target="_blank">#}
+{#                            <img src="/static/imgs/logo/crisprminer.png" alt="crisprminer">#}
+{#                        </a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#                </div>#}
+{#                <div id="discribe" class="am-u-lg-4 am-u-md-4 am-u-sm-4">#}
+{#                    <p>SRGIdb: An online database of suppressors of CRISPR-Cas and RNAi mediated defense systems for easy browsing of published anti-CRISPRs (Acrs) and viral suppressors of RNA silencing (VSRs).</p>#}
+{#                </div>#}
+{#                <div id="search" class="am-u-lg-5 am-u-md-5 am-u-sm-5">#}
+{#                        <form action="/VSR/analyze/search" method="post" name="" class="form-inline" id="searchform" data-am-validator>#}
+{#                            {% csrf_token %}#}
+{#                            <h3 style="margin: 40px 0px 0px;">#}
+{#                                Quick Search#}
+{#                            </h3>#}
+{#                            <div class="typeahead__container">#}
+{#                                <div class="typeahead__field">#}
+{#                                    <span class="typeahead__query">#}
+{#                                        <input class="js-typeahead"#}
+{#                                              name="keywords"#}
+{#                                               type="search"#}
+{#                                               autofocus#}
+{#                                               autocomplete="off" required/>#}
+{#                                    </span>#}
+{#                                    <span class="typeahead__button">#}
+{#                                        <button type="submit">#}
+{#                                            <span class="typeahead__search-icon"></span>#}
+{#                                        </button>#}
+{#                                    </span>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="am-input-group">#}
+{#                                <input id="hy" autocomplete="off" type="text" class="am-form-field" name="keywords" placeholder="Search by ID">#}
+{#                          <span class="am-input-group-btn">#}
+{#                            <button class="am-btn am-btn-primary" type="submit" id="searchButton" style="background-color: #274472;"><span class="am-icon-search"></span> </button>#}
+{#                          </span>#}
+{#                        </div>#}
+{#                </form>#}
+{#                    </div>#}
+{#            </div>#}
+{#      </div>#}
+{#    </div>#}
+{% block second_part %}{% endblock %}
+{% block third_part %}{% endblock %}
+<footer class="footer">
+  <div class="am-container">
+    <p>2018,CopyRight © College of Bioinformatics Science and Technology, Harbin Medical University, China.</p>
+  </div>
+</footer>
+<script src="/static/js/jquery-2.1.0.js"></script>
+<script src="/static/js/amazeui.min.js"></script>
+<script src="/static/js/jquery.typeahead.js"></script>
+<script src="/static/js/searchdata.js"></script>
+
+
+{% block jsblock %}{% endblock %}
+</body>
+</html>

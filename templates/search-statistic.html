@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <style>
+    #table-cas_filter{
+        display: none;
+    }
+    #table-rnai_filter{
+        display: none;
+    }
+    #table-pdb_filter{
+        display: none;
+    }
+    #table-pdb2_filter{
+        display: none;
+    }
+    #table-mge_filter{
+        display: none;
+    }
+    #table-strategy_filter{
+        display: none;
+    }
+    .am-table {
+        margin-bottom: -3px;
+    }
+    .am-u-sm-8{
+        font-size: small;
+    }
+
+    </style>
+        <script type="application/javascript" src="/static/js/echarts.min.js"></script>
+    <script type="application/javascript" src="/static/js/pie.js"></script>
+{% endblock %}
+{% block second_part %}
+
+{% endblock %}
+
+{% block third_part %}
+
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  No. of ACRs for each CRISPR-Cas subtype
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                     <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-4 am-u-md-4">
+                    <div id="cas" style="width: 100%;height: 280px"></div>
+                </div>
+                <div class="am-u-sm-8 am-u-md-8" style="height: 280px">
+                    	<table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-cas">
+                          <thead>
+                            <tr>
+                                <th>ID</th>
+                                 <th>Family</th>
+                                <th>Type</th>
+                                <th>Organism</th>
+                            </tr>
+                          </thead>
+                        </table>
+                </div>
+            </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  NO. of VSRs for each RNAi system
+                </h4>
+              </div>
+            <div id="base2" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                     <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-4 am-u-md-4">
+                    <div id="rnai" style="width: 100%;height: 280px"></div>
+                </div>
+                <div class="am-u-sm-8 am-u-md-8">
+                    <table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-rnai">
+                      <thead>
+                        <tr>
+                            <th>RSS_ID</th>
+                            <th>Short_name</th>
+                            <th>Organism</th>
+                            <th>RNAi_inhibited</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </div>
+            </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base3'}">
+                  NO. of PDB structures
+                </h4>
+              </div>
+            <div id="base3" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                     <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-4 am-u-md-4">
+                    <div id="pdb" style="width: 100%;height: 280px"></div>
+                </div>
+                <div class="am-u-sm-8 am-u-md-8">
+                    <table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-pdb">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Family</th>
+                            <th>Type</th>
+                            <th>Organism</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </div>
+            </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base4'}">
+                  NO. of PDB structures
+                </h4>
+              </div>
+            <div id="base4" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                     <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-4 am-u-md-4">
+                    <div id="pdb2" style="width: 100%;height: 280px"></div>
+                </div>
+                <div class="am-u-sm-8 am-u-md-8">
+                    <table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-pdb2">
+                      <thead>
+                        <tr>
+                            <th>RSS_ID</th>
+                            <th>Short_name</th>
+                            <th>Organism</th>
+                            <th>RNAi_inhibited</th>
+                            <th>PDB</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </div>
+            </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base5'}">
+                  No. of ACRs located in <a href="https://en.wikipedia.org/wiki/Mobile_genetic_elements" target="_blank" style="color: #0c0c0c">Mobile genetic element</a> (MGE)
+                </h4>
+              </div>
+            <div id="base5" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                     <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-4 am-u-md-4">
+                    <div id="mge" style="width: 100%;height: 280px"></div>
+                </div>
+                <div class="am-u-sm-8 am-u-md-8">
+                    <table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-mge">
+                      <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Accession</th>
+                            <th>Anticrisprdb_id</th>
+                            <th>Locus_tag</th>
+                            <th>Genome_region</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </div>
+            </div>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+<div class="detail" style="margin: 25px 0;">
+<div class="am-container">
+    <div class="am-panel am-panel-primary">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{ target: '#base6'}">
+              No. of VSRs in each strategy categories
+            </h4>
+          </div>
+        <div id="base6" class="am-panel-collapse am-collapse am-in">
+            <div class="am-panel-bd">
+                <div class="tpl-block ">
+                 <div class="am-g tpl-amazeui-form">
+            <div class="am-u-sm-4 am-u-md-4">
+                <div id="strategy" style="width: 100%;height: 280px"></div>
+            </div>
+            <div class="am-u-sm-8 am-u-md-8">
+                <table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-strategy">
+                  <thead>
+                    <tr>
+                        <th>vsr_id</th>
+                        <th>Short_name</th>
+                        <th>Organism</th>
+                        <th>RNAi_inhibited</th>
+                        <th>strategy</th>
+                    </tr>
+                  </thead>
+                </table>
+            </div>
+        </div>
+            </div>
+            </div>
+          </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block jsblock %}
+<script src="/static/js/amazeui.datatables.min.js"></script>
+<script type="text/javascript" src="/static/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="/static/js/buttons.html5.min.js"></script>
+<script type="application/javascript">
+$(document).ready(function() {
+    function pietable(divid, antitable, antititle, antijs, column){
+        var cas = $('#table-'+divid).DataTable( {
+            fixedHeader: true,
+            scrollY:250,
+            paging: false,
+            ordering:false,
+            info: false,
+            {#searching:false,#}
+            data: antitable,
+            columns: column,
+        });
+        var mychartcas = echarts.init(document.getElementById(divid));
+        mychartcas.setOption(pie('', antititle, antijs));
+        function eConsole(param) {
+           cas.search(param.data.name, false, false).draw();
+        }
+        mychartcas.on("click", eConsole);
+    }
+
+    pietable('cas', {{ antitable | safe }}, {{ antititle | safe }}, {{ antijs | safe }},[{data: "id"}, {data: "family"}, {data: "crispr_type_inhibited"}, {data: "source_organism"}]);
+    pietable('rnai', {{ rnaitable | safe }}, {{ rnaititle | safe }}, {{ rnaijs | safe }},[{data: "rss_id"}, {data: "short_name"}, {data: "organism"}, {data: "rnai_inhibited"}]);
+    pietable('pdb', {{ pdbtable | safe }}, {{ pdbtitle | safe }}, {{ pdbjs | safe }},[{data: "id"}, {data: "family"}, {data: "crispr_type_inhibited"}, {data: "pdb"}]);
+    pietable('pdb2', {{ pdb2table | safe }}, {{ pdb2title | safe }}, {{ pdb2js | safe }},[{data: "rss_id"}, {data: "short_name"}, {data: "organism"}, {data: "rnai_inhibited"},{data: 'structure_pdb_code_field'}]);
+    pietable('mge', {{ mgetable | safe }}, {{ mgetitle | safe }}, {{ mgejs | safe }},[{data: "id"}, {data: "accession"}, {data: "anticrisprdb_id"},{data: 'locus_tag'}, {data: "genome_region"}]);
+    pietable('strategy', {{ strategytable | safe }}, {{ strategytitle | safe }}, {{ strategyjs | safe }},[{data: "vsr_id"}, {data: "short_name"}, {data: "organism"}, {data: "rnai_inhibited"}, {data: "strategy"}]);
+});
+</script>
+{% endblock %}

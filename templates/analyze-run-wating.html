@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jiantou.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-selected-btn {
+    width: auto;
+}
+     .progress-ul li {
+    list-style: disc;
+    margin-left: 20px;
+}
+    </style>
+{% endblock %}
+<div class="am-panel am-panel-default">
+      <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+          Enter Query Sequence
+        </h4>
+      </div>
+      <div id="base1" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+
+        </div>
+      </div>
+  </div>
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  Executing
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <p>Your request has been running for <strong>{{ costime }} seconds</strong>. [task is running...<i class="am-icon-cog am-icon-spin"></i>]</p>
+                    <p>It may take several minutes depending on settings.</p>
+                    <p>If you provided an email address, a link to the results page will be sent by email.</p>
+                    <ul class="progress-ul">
+                        <li {% if step >= 1 %} style="color: green"{% endif %}>Step1：ParseHomogy {% if step >= 1 %}<i class="am-icon-check" style="margin-left: 5px"></i>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+                        <li {% if step >= 2 %} style="color: green"{% endif %}>Step2：GetGenomeSequence{% if step >= 2 %}<i class="am-icon-check" style="margin-left: 5px"></i>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+                        <li {% if step >= 3 %} style="color: green"{% endif %}>Step3：ParseFaaFromGB{% if step >= 3 %}<i class="am-icon-check" style="margin-left: 5px"></i>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+                        <li {% if step >= 4 %} style="color: green"{% endif %}>Step4：Get11proteins{% if step >= 4 %}<i class="am-icon-check" style="margin-left: 5px"></i>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+                        <li {% if step >= 5 %} style="color: green"{% endif %}>Step5：rpsblast11proteins{% if step >= 5 %}<i class="am-icon-check" style="margin-left: 5px"></i>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+                        <li {% if step >= 6 %} style="color: green"{% endif %}>Step6：parsexml11proteins{% if step >= 6 %}<span class="am-icon-check" style="margin-left: 5px"></span>{% else %}<i class="am-icon-spinner am-icon-spin"></i>{% endif %}</li>
+
+                    </ul>
+                    <p>runing progress</p>
+                    <div class="am-progress am-progress-striped am-active ">
+                        {% if step >= 1 %}<div class="am-progress-bar"  style="width: 20%">ParseHomogy</div>{% endif %}
+                        {% if step >= 2 %}<div class="am-progress-bar"  style="width: 16%">GetGenomeSequence</div>{% endif %}
+                        {% if step >= 3 %}<div class="am-progress-bar"  style="width: 16%">ParseFaaFromGB</div>{% endif %}
+                        {% if step >= 4 %}<div class="am-progress-bar"  style="width: 16%">Get11proteins</div>{% endif %}
+                        {% if step >= 5 %}<div class="am-progress-bar"  style="width: 16%">rpsblast11proteins</div>{% endif %}
+                        {% if step >= 6 %}<div class="am-progress-bar"  style="width: 16%">parsexml11proteins</div>{% endif %}
+                    </div>
+                </div>
+              </div>
+        </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+    <script language="JavaScript">
+        function myrefresh()
+        {
+            window.location.reload();
+        }
+        setTimeout('myrefresh()',5000); //指定5秒刷新一次
+    </script>
+{% endblock %}

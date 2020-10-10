@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/ecarts/homologs.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-selected-btn {
+    width: auto;
+}
+    </style>
+{% endblock %}
+<div class="am-panel am-panel-default">
+      <div class="am-panel-hd">
+        <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+          Enter Query Sequence
+        </h4>
+      </div>
+      <div id="base1" class="am-panel-collapse am-collapse am-in">
+        <div class="am-panel-bd">
+
+        </div>
+      </div>
+  </div>
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+{% if stats == 'blastp' %}
+    <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base3'}">
+                 {{ title }}
+                </h4>
+              </div>
+            <div id="base3" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    	<table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-list">
+                          <thead>
+                            <tr>
+                                <th>Query_ID</th>
+                                <th>Hit_RSS_ID</th>
+                                <th>Hit_ID</th>
+                                {% if vfyes == 'true' %}
+                                <th>Hit_Family</th>
+                                    {% endif %}
+                                <th>Query_Start</th>
+                                <th>Query_End</th>
+                                <th>Hit_Start</th>
+                                <th>Hit_End</th>
+                                <th>Identity</th>
+                                <th>Evalue</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for value in blastres %}
+                              <tr>
+                                    <td>{{ value.Query_ID }}</td>
+                              {% if urllink == 'browse_detail/' %}
+                                    <td><a href="/VSR/{{ urllink }}{{ value.Hit_ID }}">{{ value.Hit_RSS_ID }}</a></td>
+                                  {% elif  urllink == 'browse_VSR_detail/'%}
+                                <td><a href="/VSR/{{ urllink }}{{ value.Hit_RSS_ID }}">{{ value.Hit_RSS_ID }}</a></td>
+                                  {% else %}
+                                  <td>{{ value.Hit_RSS_ID }}</td>
+                                  {% endif %}
+                                  <td>{{ value.Hit_ID }}</td>
+                                  {% if vfyes == 'true' %}
+                                    <td>{{ value.Hit_Family }}</td>
+                                  {% endif %}
+                                    <td>{{ value.Query_Start }}</td>
+                                    <td>{{ value.Query_End }}</td>
+                                    <td>{{ value.Hit_Start }}</td>
+                                    <td>{{ value.Hit_End }}</td>
+                                    <td>{{ value.Identity }}</td>
+                                    <td>{{ value.Evalue }}</td>
+
+                                </tr>
+                          {% endfor %}
+                        </tbody>
+				</table>
+                </div>
+              </div>
+        </div>
+  {% else %}
+      <div class="am-panel am-panel-warning">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  Wrning
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <p>cost time: {{ costime }} seconds</p>
+                    <p>This result will be retained for seven days.<a href="/VSR/analyze_run/{{ startime }}">link</a></p>
+				</table>
+                </div>
+              </div>
+        </div>
+      <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base3'}">
+                  Blastp results with verified anti-CRISPRs in the same family
+                </h4>
+              </div>
+            <div id="base3" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    	<table class="am-table am-table-striped am-table-bordered am-table-compact" id="table-list">
+                          <thead>
+                            <tr>
+                                <th>Query_Protein_ID</th>
+                                <th>Homoloty_Protein_ID</th>
+                                <th>Homology_Protein_Def</th>
+                                <th>Evalue</th>
+                                <th>Identity</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for value in blastres %}
+                              <tr>
+                                    <td>{{ value.Query_Protein_ID }}</td>
+                                    <td>{{ value.Homoloty_Protein_ID }}</td>
+                                    <td>{{ value.Homology_Protein_Def }}</td>
+                                    <td>{{ value.Evalue }}</td>
+                                    <td>{{ value.Identity }}</td>
+
+                                </tr>
+                          {% endfor %}
+                        </tbody>
+				</table>
+                </div>
+              </div>
+        </div>
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  View result
+                </h4>
+              </div>
+            <div id="base2" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <table class="am-table am-table-bordered am-table-compact" id="table-list">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">Homoloty_Protein_ID</th>
+                        <th style="width: 20%">homolog_def</th>
+                        <th style="width: 70%; height: 60px">Position</th>
+                    </tr>
+                </thead>
+             <tbody>
+                {% for key, values in datalist.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td >{{ values }}</td>
+                        <td style="overflow: initial;">
+{#                             <a href ="/VSR/browse_anti_detail/{{ key }}" target="_blank">#}
+                                 <div id="{{ key }}" style="width: 100%; height: 150px"></div>
+{#                             </a>#}
+                            <script>
+                                var protinid = 'homol1';
+                                var data = {{ datajs | safe }};
+                                data = data["{{ key }}"];
+                                homologs(protinid, data, "{{ key }}")
+                            </script>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+             </tbody>
+	</table>
+                </div>
+              </div>
+        </div>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}

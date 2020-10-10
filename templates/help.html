@@ -1,0 +1,139 @@
+
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" href="../static/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="../static/css/amazeui.tree.min.css"/>
+    <style>
+    #do-not-say-1 p{
+        margin: 0;
+    }
+    #do-not-say-1 i{
+        font-size: smaller;
+        margin-right: 5px;
+    }
+    </style>
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;margin-bottom: 220px;">
+  <div class="am-container">
+  	<div class="am-g">
+      <div class="am-u-sm-12">
+      	<div class="row am-cf">
+	        <div class="am-u-md-12">
+	        	<div class="am-panel am-panel-default">
+                  <div class="am-panel-hd">
+                    <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                      Help
+                    </h4>
+                  </div>
+                  <div id="base1" class="am-panel-collapse am-collapse am-in">
+                    <div class="am-panel-bd">
+                    	<div class="am-panel-group" id="accordion">
+							  <div class="am-panel am-panel-default">
+							    <div class="am-panel-hd">
+							      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+							        <span class="am-icon-btn">
+							        	01
+							        </span> 
+							        <p> Get an overview of SRGIdb</p>
+							      </h4>
+							    </div>
+							    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+							      <div class="am-panel-bd">
+                                      <h4>Data sources</h4>
+                                      <p>With SRGIdb, we aim to capture the suppressors of RNA-guided antiviral defense systems in Prokaryotes and Eukaryotes, by providing:</p>
+                                      <p style="margin-left: 15px"><i class="am-icon-circle"></i>381 VSRs obtained from 161 publications or ViralZone database (annotated in <strong>UniProtKB/Swiss-Prot</strong>):</p>
+                                      <p style="margin-left: 30px"><i class="am-icon-circle-o"></i>331 protein sequences with different accession numbers;</p>
+                                      <p  style="margin-left: 30px"><i class="am-icon-circle-o"></i>>50 protein families including P0, P1, P19, P22, P3, P0, CP, B2, 2b, NSs, NS3, HC-Pro, P2, P126, P38, P37, P15, TGBp1(P25), Pns10, Pns11, Pns12, VP35, VP3, VPg, RNase III, Beta C1 etc.</p>
+                                      <p style="margin-left: 15px"><i class="am-icon-circle"></i>30 verified anti-CRISPRs (ACRs) and 446 homologs reported in 7 publications</p>
+                                      <p style="margin-left: 30px"><i class="am-icon-circle-o"></i>476 protein sequences with different accession numbers;</p>
+                                      <p style="margin-left: 30px"><i class="am-icon-circle-o"></i>23 families including AcrF1-10, AcrE1-4, AcrIIA1-5, AcrIIC1-3, AcrID1</p>
+                                      <h4>Service provided:</h4>
+                                      <p style="margin-left: 15px"><strong>Browse page</strong> is used for easily browsing the detail information for ACRs and VSRs.</p>
+                                      <p style="margin-left: 15px"><strong>Search page</strong> is used for searching the records in our database using keywords or protein sequence.</p>
+                                      <p style="margin-left: 15px"><strong>Visualize page</strong> is used for summarizing the PDB structures and mechanism illustrations of the ACRs and VSRs.</p>
+                                      <p style="margin-left: 15px"><strong>Analyze page</strong> is used to analyze the genomic neighborhood of anti-CRISPR candidates. Analyze Download page is used to download the datasets underlying our database.</p>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="am-panel am-panel-default">
+							    <div class="am-panel-hd">
+							      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+							         <span class="am-icon-btn">
+							        	02
+							        </span> 
+							        <p>How to browse the annotations of ACRs and VSRs ?</p>
+							      </h4>
+							    </div>
+							    <div id="do-not-say-2" class="am-panel-collapse am-collapse">
+							      <div class="am-panel-bd" style="text-align: center">
+							        <img src="/static/imgs/help1.png" style="width: 70%"/>
+							        <img src="/static/imgs/help2.png" style="width: 70%"/>
+							        <img src="/static/imgs/help3.png" style="width: 70%"/>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="am-panel am-panel-default">
+							    <div class="am-panel-hd">
+							      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">
+							      	 <span class="am-icon-btn">
+							        	03
+							        </span> 
+							        <p>How to search for the ACRs or VSRs using keywords or sequence?</p>
+							      </h4>
+							    </div>
+							    <div id="do-not-say-3" class="am-panel-collapse am-collapse">
+							      <div class="am-panel-bd" style="text-align: center">
+
+							        <img src="/static/imgs/help5.png" style="width: 70%"/>
+							      </div>
+							    </div>
+							  </div>
+							  <div class="am-panel am-panel-default">
+							    <div class="am-panel-hd">
+							      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-4'}">
+							      	 <span class="am-icon-btn">
+							        	04
+							        </span> 
+							        <p>How to analyze the genomic neighborhood of an ACR?</p>
+							      </h4>
+							    </div>
+							    <div id="do-not-say-4" class="am-panel-collapse am-collapse">
+							      <div class="am-panel-bd" style="text-align: center">
+							        <img src="/static/imgs/help4.png" style="width: 70%"/>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+                    </div>
+                  </div>
+              </div>
+	        </div>
+	        <div class="am-u-md-12">
+	        	<div class="am-panel am-panel-default">
+                  <div class="am-panel-hd">
+                    <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                      Contact Us
+                    </h4>
+                  </div>
+                  <div id="base2" class="am-panel-collapse am-collapse am-in">
+                    <div class="am-panel-bd">
+                        Please email: <strong>xindd_2014@163.com</strong> or <strong>fanzhang@hit.edu.cn</strong> when you have any question or problem about using CRISPR.
+                    </div>
+                  </div>
+              </div>
+	          </div>
+       </div>
+      </div>
+   </div>
+  	</div>
+</div>
+{% endblock %}
+{% block jsblock %}
+{% endblock %}
+
+
+
+

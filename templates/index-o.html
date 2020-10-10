@@ -1,0 +1,417 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+<style>
+.tpl-left-nav-list {
+    width: 235px;
+}
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.tpl-left-nav-menu .active {
+    border-right: 3px solid #5C9ACF!important;
+    background: #f2f6f9;
+    color: #5b9bd1;
+}
+
+.tpl-left-nav-item {
+    padding: 12px 15px 12px 12px;
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 20px;
+    height: 60px;
+}
+.tpl-left-nav-menu li:hover {
+    color: #5b9bd1;
+    border-right: 3px solid #5C9ACF!important;
+    background: #f2f6f9;
+}
+.am-panel-primary>.am-panel-hd {
+    color: #fff;
+    background-color: #274472;
+    border-color: #274472;
+}
+.am-panel-primary {
+    border-color: #274472;
+}
+.divhide{
+    display: none;
+}
+.overview_ul i{
+    margin-right: 8px;
+    font-size: small;
+    color: #274472;
+}
+#base2 p{
+    font-size: small;
+    margin: 0;
+}
+#base2 i{
+    margin-right: 8px;
+    font-size: small;
+    color: #274472;
+}
+</style>
+{% endblock %}
+{% block second_part %}
+
+{% endblock %}
+
+{% block third_part %}
+{#            <div class="tpl-left-nav-list" style="float:left;width: 20%;margin-top: 50px;">#}
+{#                <ul class="tpl-left-nav-menu">#}
+{#                    <li id="welcome" class="tpl-left-nav-item active">#}
+{#                            <i class="am-icon-bookmark"></i>#}
+{#                            <span>welcome</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="deposit" >#}
+{#                            <i class="am-icon-cloud-upload"></i>#}
+{#                            <span>deposit</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="browse">#}
+{#                            <i class="am-icon-picture-o"></i>#}
+{#                            <span>browse</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="analyze">#}
+{#                            <i class="am-icon-sitemap"></i>#}
+{#                            <span>analyze</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="download" >#}
+{#                            <i class="am-icon-download"></i>#}
+{#                            <span>Download</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="analyze">#}
+{#                            <i class="am-icon-sitemap"></i>#}
+{#                            <span>help</span>#}
+{#                    </li>#}
+{#                    <li class="tpl-left-nav-item" id="download" >#}
+{#                            <i class="am-icon-download"></i>#}
+{#                            <span>Learn</span>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="tpl-left-nav-list" style="background: white;float:left;width: 80%;height: 500px;overflow: hidden">#}
+{#                <iframe src="/browse/VSR.html" id="iframeresult" style="width: 100%;height:500px"></iframe>#}
+{#                <div id="right-side">#}
+{#                    <div id="first">#}
+{#                        <div class="am-u-lg-5 am-u-sm-5 am-u-md-5 ">#}
+{#                            <h2>viral suppressors of RNA silencing</h2>#}
+{#                              <p>To counteract host RNAi antiviral defense, viruses from almost all plant virus genera (and also from some animal viruses) encode viral suppressors of RNA silencing (VSRs) which inhibit key steps of cellular RNAi system.</p>#}
+{#                              <h2>Anti-CRISPRs</h2>#}
+{#                              <p>Since CRISPR-Cas systems provide a potent defense mechanism against phage infection. On the contrary,  phages possess anti-CRISPR proteins to inhibit these systems.</p>#}
+{##}
+{#                        </div>#}
+{#                        <div class="am-u-lg-7 am-u-sm-7 am-u-md-7">#}
+{#                            <div id="pie" style="width: 100%;height: 480px;border: 1px solid #999;margin-top: 10px"></div>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    <div id="second" class="divhide">#}
+{#                      <h1>Pay for it</h1>#}
+{#                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>#}
+{#                    </div>#}
+{#                    <div id="third" class="divhide">#}
+{#                      <h1>We will wrap it</h1>#}
+{#                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>#}
+{#                    </div>#}
+{#                    <div id="fourth" class="divhide">#}
+{#                      <h1>Ship it</h1>#}
+{#                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>#}
+{#                    </div>#}
+{#                    <div id="five" class="divhide">#}
+{#                      <h1>Ship it</h1>#}
+{#                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at viverra est, eu finibus mauris. Quisque tempus vestibulum fringilla. Morbi tortor eros, sollicitudin eu arcu sit amet, aliquet sagittis dolor. </p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        #}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+{#                SRGIdb: an online database of Suppressors of RNA-Guided Immunity#}
+                <img src="/static/imgs/logo/srgidb.png" style="height: 32px;margin-bottom: 10px;">:
+                an online database of
+                <img src="/static/imgs/logo/s.png" style="margin-bottom: 10px;margin-right: -5px;">
+                uppressors of
+                <img src="/static/imgs/logo/R.png" style="margin-bottom: 10px;">NA-
+                <img src="/static/imgs/logo/G.png" style="margin-bottom: 10px;">uided
+                <img src="/static/imgs/logo/I.png" style="margin-bottom: 10px;margin-right: -12px;">
+                mmunity
+            </div>
+        </div>
+        <div class="tpl-block ">
+            <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-6 am-u-md-6">
+                    <img src="/static/imgs/casrevised.png" style="width: 100%"/>
+                </div>
+                <div class="am-u-sm-6 am-u-md-6">
+                    <p style="font-size: x-large;color: #5b9bd5;margin-bottom: 0;">SRGIdb:</p>
+                    <p style="margin:0">An online database of suppressors of CRISPR-Cas and RNAi mediated defense systems for easy browsing of published anti-CRISPRs (Acrs) and viral suppressors of RNA silencing (VSRs).</p>
+                    <p style="font-size: x-large;color: #5b9bd5;margin-bottom: 0;">Viral suppressors of RNA silencing (VSR):</p>
+                    <p style="margin:0">To counteract host RNAi antiviral defense, viruses from almost all plant virus genera (and also from some insect and mammal viruses) encode viral suppressors of RNA silencing (VSRs) which inhibit key steps of cellular RNAi system.</p>
+                    <p style="font-size: x-large;color: #5b9bd5;margin-bottom: 0;">Anti-CRISPRs (ACR):</p>
+                    <p style="margin:0">Since CRISPR-Cas systems provide a potent defense mechanism against phage infection. On the contrary, phages possess anti-CRISPR proteins to inhibit these systems.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+  	<div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                Overview and data sources
+            </div>
+        </div>
+        <div class="tpl-block ">
+            <div class="am-g tpl-amazeui-form">
+                <div class="am-u-sm-12 am-u-md-12">
+                    <p><i class="am-icon-pie-chart" style="color: #63b3e8;margin-right:10px;font-size: larger;"></i>With SRGIdb, we aim to capture the suppressors of RNA-guided antiviral defense systems in Prokaryotes and Eukaryotes, by providing:</p>
+                    <ul class="overview_ul">
+                        <li>
+                            <p><i class="am-icon-circle"></i>381 VSRs obtained from 161 publications and ViralZone database:</p>
+                            <ul style="margin-left: 40px;">
+                                <li><i class="am-icon-circle-o"></i>172 are collected from publications.</li>
+                                <li><i class="am-icon-circle-o"></i>269 are covered by ViralZone database.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><i class="am-icon-circle"></i>30 validated anti-CRISPRs obtained from 8 publications and 2751 homologs  predicted using the blastp tool</p>
+                            <ul style="margin-left: 40px;">
+                                <li><i class="am-icon-circle-o"></i>30 validated anti-CRISPRs are obtained from 8 publications.</li>
+                                <li><i class="am-icon-circle-o"></i>383 homologs of the 2751 are covered by 8 publications.</li>
+                            </ul>
+                        </li>
+                        <li><i class="am-icon-circle"></i>** PDB structures</li>
+                        <li><i class="am-icon-circle"></i>** interactors of VSRs and Acrs</li>
+                        <li><i class="am-icon-circle"></i>Explanation of the mechanism of action for 248 VSRs and 14 Acrs.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+        <div class="detail">
+            <div class="am-container">
+                <div class="am-u-md-4" style="padding-left: 0px">
+                        <div class="am-panel am-panel-primary"  style="height: 300px">
+                          <div class="am-panel-hd">
+                            <h4 class="am-panel-title" style="display: inline;">
+                              Useful links
+                            </h4>
+                          </div>
+                          <div  class="am-panel-collapse am-collapse am-in">
+                            <div class="am-panel-bd">
+                                <script type="text/javascript" src="//ra.revolvermaps.com/0/0/7.js?i=0vjsje1yprv&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;br=4&amp;sx=0" async="async"></script>
+                            </div>
+                          </div>
+                      </div>
+                </div>
+                <div class="am-u-md-4 ">
+                        <div class="am-panel am-panel-primary"  style="height: 300px">
+                          <div class="am-panel-hd">
+                            <h4 class="am-panel-title">
+                              Features & Highlights
+                            </h4>
+                          </div>
+                          <div id="base1" class="am-panel-collapse am-collapse am-in">
+                                            <ul class="logolist">
+                    <li>
+                        <a href="http://www.rcsb.org/">
+                            <img src="/static/imgs/logo/pdb.png" alt="PDB">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.uniprot.org/" target="_blank">
+                            <img src="/static/imgs/logo/uniprot.png" alt="uniprot">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://viralzone.expasy.org/" target="_blank">
+                            <img src="/static/imgs/logo/viralzone.jpg" alt="viralzone">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.microbiome-bigdata.com:10001/CRISPRminer/" target="_blank">
+                            <img src="/static/imgs/logo/crisprminer.png" alt="crisprminer">
+                        </a>
+                    </li>
+                </ul>
+                          </div>
+                      </div>
+                    </div>
+                <div class="am-u-md-4" style="padding-right: 0px">
+                        <div class="am-panel am-panel-primary"  style="height: 300px">
+                          <div class="am-panel-hd">
+                            <h4 class="am-panel-title" style="display: inline;">
+                              News
+                            </h4>
+                          </div>
+                          <div id="base2" class="am-panel-collapse am-collapse am-in">
+                            <div style="padding: 10px;">
+                                <strong>Recent publications:</strong>
+                                <p><i class="am-icon-circle"></i>Structural basis of CRISPR-SpyCas9 inhibition by an anti-CRISPR protein. Nature. DOI：10.1038/nature22377.</p>
+                                <p><i class="am-icon-circle"></i>Structural basis of stringent PAM recognition by CRISPR-C2c1 in complex with sgRNA. Cell Research. doi:10.1038/cr.2017.46.</p>
+                                <p><i class="am-icon-circle"></i>Crystal structure of CRISPR-Cpf1 in complex with CRISPR RNA (crRNA). Nature. 532, 522-526.</p>
+                                <p><i class="am-icon-circle"></i>Structural insights into the inactivation of CRISPR-Cas systems by diverse anti-CRISPR proteins.[J].BMC Biology, 2018, 16(1):32.</p>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jsblock %}
+    <script type="application/javascript" src="/static/js/echarts.min.js"></script>
+{#    <script>#}
+{#    var mychartspie = echarts.init(document.getElementById('pie'));#}
+{#   option = {#}
+{#        tooltip : {#}
+{#            trigger: 'axis',#}
+{#            axisPointer : {            // 坐标轴指示器，坐标轴触发有效#}
+{#                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'#}
+{#            }#}
+{#        },#}
+{#            title: [{#}
+{#            text: 'Station statistics',#}
+{#            left: '36%',#}
+{#            top: '2%',#}
+{#            textStyle: {#}
+{#                color: '#274472',#}
+{#                fontSize: 24,#}
+{#            }#}
+{#        }, {#}
+{#            text: '',#}
+{#            left: '83%',#}
+{#            top: '6%',#}
+{#            textAlign: 'center',#}
+{#            textStyle: {#}
+{#                color: '#274472'#}
+{#            }#}
+{#        }],#}
+{#        legend: {#}
+{#            right: '10%',#}
+{#            top:'10%',#}
+{#            orient: 'vertical',#}
+{#            data: ['1', '2','3','4','5']#}
+{#        },#}
+{#        grid: {#}
+{#            left: '1%',#}
+{#            right: '35%',#}
+{#            top: '16%',#}
+{#            bottom: '6%',#}
+{#            containLabel: true#}
+{#        },#}
+{#        xAxis:  {#}
+{#            type: 'value',#}
+{#            splitLine:{show: false}#}
+{#        },#}
+{#        yAxis: {#}
+{#            type: 'category',#}
+{#            data: ['1','2','3','4','5','6','7'],#}
+{#            splitLine:{show: false}#}
+{#        },#}
+{#        series: [#}
+{#            {#}
+{#                name: '1',#}
+{#                type: 'bar',#}
+{#                stack: '总量',#}
+{##}
+{#                data: [320, 302, 301, 334, 390, 330, 320]#}
+{#            },#}
+{#            {#}
+{#                name: '2',#}
+{#                type: 'bar',#}
+{#                stack: '总量',#}
+{##}
+{#                data: [120, 132, 101, 134, 90, 230, 210]#}
+{#            },#}
+{#            {#}
+{#                name: '3',#}
+{#                type: 'bar',#}
+{#                stack: '总量',#}
+{##}
+{#                data: [220, 182, 191, 234, 290, 330, 310]#}
+{#            },#}
+{#            {#}
+{#                name: '4',#}
+{#                type: 'bar',#}
+{#                stack: '总量',#}
+{##}
+{#                data: [150, 212, 201, 154, 190, 330, 410]#}
+{#            },#}
+{#            {#}
+{#                name: '5',#}
+{#                type: 'bar',#}
+{#                stack: '总量',#}
+{##}
+{#                data: [820, 832, 901, 934, 1290, 1330, 1320]#}
+{#            },#}
+{#            {#}
+{#            type: 'pie',#}
+{#            roseType : 'radius',#}
+{#            center: ['74%', '63%'],#}
+{#            radius: ['5%', '40%'],#}
+{##}
+{#                  data:[#}
+{#                    {value:335, name:'1'},#}
+{#                    {value:310, name:'2'},#}
+{#                    {value:234, name:'3'},#}
+{#                    {value:135, name:'4'},#}
+{#                    {value:154, name:'5'}#}
+{#                ]#}
+{#        },#}
+{##}
+{##}
+{##}
+{#        ]#}
+{#    };#}
+{#    mychartspie.setOption(option);#}
+{#    </script>#}
+<script>
+    $(".tpl-left-nav-menu").on("click","li",function(){
+        {#$("#iframeresult").attr("src",$(this).text()).ready();#}
+        if($(this).context.id=='welcome'){
+            $('#first').removeClass('divhide');
+            $('#second').addClass('divhide');
+            $('#third').addClass('divhide');
+            $('#fourth').addClass('divhide');
+        }else if($(this).context.id=='deposit'){
+            $('#second').removeClass('divhide');
+            $('#first').addClass('divhide');
+            $('#third').addClass('divhide');
+            $('#fourth').addClass('divhide');
+        }else if($(this).context.id=='browse'){
+            $('#third').removeClass('divhide');
+            $('#first').addClass('divhide');
+            $('#second').addClass('divhide');
+            $('#fourth').addClass('divhide');
+        }else if($(this).context.id=='analyze'){
+            $('#fourth').removeClass('divhide');
+            $('#first').addClass('divhide');
+            $('#second').addClass('divhide');
+            $('#third').addClass('divhide');
+        }else if($(this).context.id=='deposit'){
+            $('#second').removeClass('divhide');
+            $('#first').addClass('divhide');
+            $('#third').addClass('divhide');
+            $('#fourth').addClass('divhide');
+        }
+
+ });
+    $(".tpl-left-nav-menu li").click(function(){
+            $(this).addClass("active").siblings().removeClass("active")
+        });
+</script>
+{% endblock %}

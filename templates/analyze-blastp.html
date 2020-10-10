@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jiantou.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-selected-btn {
+    width: auto;
+}
+    </style>
+{% endblock %}
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+      {% if error == 1 %}
+      <div class="am-panel am-panel-warning">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#basew'}">
+                  Warning
+                </h4>
+              </div>
+            <div id="basew" class="am-panel-collapse am-collapse">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        请输入正确的数据
+                        <a href="/VSR/help">help</a>
+                    </div>
+                </div>
+                </div>
+              </div>
+        </div>
+      {% endif %}
+      <form class="am-form am-form-horizontal" method="post" action="/VSR/analyze_result/" target="_blank" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base1'}">
+                  Enter Query Sequence
+                </h4>
+              </div>
+            <div id="base1" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block ">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-9">
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">Anti-CRISPR sequence</label>
+                                    <div class="am-u-sm-9">
+                                        <textarea id="textinput" class="" rows="5" id="user-intro" placeholder="" name="sequence"></textarea>
+                                        <button type="button" class="am-btn am-btn-primary am-btn-xs" style="float: right" id="addbutton">example</button>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">Or upload file</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-form-group am-form-file" style="width: 120px;">
+                                          <button type="button" class="am-btn am-btn-primary am-btn-sm">
+                                            <i class="am-icon-cloud-upload"></i> UploadFile</button>
+                                          <input id="doc-form-file" type="file" name="upfile" multiple>
+                                        </div>
+                                        <div id="file-list"></div>
+
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+        </div>
+        <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  Homologous search
+                </h4>
+            </div>
+            <div id="base2" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <div class="tpl-block">
+                    <div class="am-g tpl-amazeui-form">
+                        <div class="am-u-sm-12 am-u-md-9">
+                            <div class="am-form-group">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">Database</label>
+                                <div class="am-u-sm-9">
+                                    <select data-am-selected="{maxHeight: 100}" id="databaseSelect">
+{#                                        <option value="Anti-CRISPR">Anti-CRISPR Protein sequences (Validated)</option>#}
+                                        <option value="nr">Non-redundant protein sequences (nr)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="am-form-group" id="selectwidth">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">Algorithm</label>
+                                <div class="am-u-sm-9">
+                                    <label class="am-radio am-secondary" style="line-height: 4px;">
+                                      <input type="radio" name="radioName" value="blastp" data-am-ucheck checked>
+                                      blastp (protein-protein BLAST)
+                                    </label>
+                                    <label class="am-radio am-secondary" style="line-height: 4px;">
+                                      <input type="radio" name="radioName" value="PSI-BLAST" data-am-ucheck >
+                                      PSI-BLAST (Position-Specific Iterated BLAST)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <label for="user-weibo" class="am-u-sm-3 am-form-label">Parameters</label>
+                                <div class="am-u-sm-9">
+                                    <ul>
+                                        <li>
+                                            <span style="font-size: 14px;">Expect threshold: </span>
+                                            <input type="number" min="0" max="100" step="1" value="10" name="threshold" style="display: inline; width: 70px">
+                                        </li>
+                                        <li style="margin-top: 5px;">
+                                            <span style="font-size: 14px;">wordsize: </span>
+                                            <input type="number" min="0" max="100" step="1" value="6" name="'wordsize"  style="display: inline; width: 70px">
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+{#          <div class="am-panel am-panel-primary">#}
+{#            <div class="am-panel-hd">#}
+{#                <h4 class="am-panel-title" data-am-collapse="{ target: '#base3'}">#}
+{#                  Choose Search Set#}
+{#                </h4>#}
+{#            </div>#}
+{#              <div id="base3" class="am-panel-collapse am-collapse am-in">#}
+{#                  <div class="am-panel-bd">#}
+{#                    <div class="tpl-block ">#}
+{#                    <div class="am-g tpl-amazeui-form">#}
+{#                        <div class="am-u-sm-12 am-u-md-9">#}
+{#                            <div class="am-form-group" id="selectwidth">#}
+{#                                <label for="user-weibo" class="am-u-sm-3 am-form-label">Algorithm</label>#}
+{#                                <div class="am-u-sm-9">#}
+{#                                    <label class="am-radio am-secondary" style="line-height: 4px;">#}
+{#                                      <input type="radio" name="radioName" value="blastp" data-am-ucheck checked>#}
+{#                                      blastp (protein-protein BLAST)#}
+{#                                    </label>#}
+{#                                    <label class="am-radio am-secondary" style="line-height: 4px;">#}
+{#                                      <input type="radio" name="radioName" value="PSI-BLAST" data-am-ucheck >#}
+{#                                      PSI-BLAST (Position-Specific Iterated BLAST)#}
+{#                                    </label>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="am-form-group">#}
+{#                                <label for="user-weibo" class="am-u-sm-3 am-form-label">Parameters</label>#}
+{#                                <div class="am-u-sm-9">#}
+{#                                    <ul>#}
+{#                                        <li>#}
+{#                                            <span style="font-size: 14px;">Expect threshold: </span>#}
+{#                                            <input type="number" min="0" max="100" step="1" value="10" name="threshold" style="display: inline; width: 70px">#}
+{#                                        </li>#}
+{#                                        <li style="margin-top: 5px;">#}
+{#                                            <span style="font-size: 14px;">wordsize: </span>#}
+{#                                            <input type="number" min="0" max="100" step="1" value="6" name="'wordsize"  style="display: inline; width: 70px">#}
+{#                                        </li>#}
+{#                                    </ul>#}
+{##}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+          <div class="am-panel am-panel-primary">
+            <div class="am-panel-hd">
+                <h4 class="am-panel-title" data-am-collapse="{ target: '#base2'}">
+                  Anti-CRISPR candidate neighborhood analysis
+                </h4>
+            </div>
+            <div id="base2" class="am-panel-collapse am-collapse am-in">
+                <div class="am-panel-bd">
+                    <p>Lots of anti-CRISPR genes were found to share a common genomic neighborhood</p>
+                    <p><i class="am-icon-circle" style="margin-left: 10px;margin-right: 5px;"></i>putative transcriptional regulator (<span style="color: red">helix-turn-helix domain</span>) was found downstream of known phage anti-CRISPR gene loci</p>
+                    <p><i class="am-icon-circle" style="margin-left: 10px;margin-right: 5px;"></i>some anti-CRISPRs were within <span style="color: red">a small operon (two to five genes) of highly conserved gene order</span></p>
+                    <button type="submit" class="am-btn am-btn-primary" style="width: 120px;">RUN</button>
+                  <span class="infoTitle">Search database</span>
+                     <span id="database_span1"  style="color: dodgerblue;">
+                          Anti-CRISPR
+                     </span>
+                  <span class="infoTitle">using Algorithm</span>
+                  <span id="database_span2" style="color: dodgerblue;">
+                    blastp (protein-protein BLAST)
+                  </span>
+                </div>
+            </div>
+        </div>
+
+      </form>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block jsblock %}
+ <script>
+    $(document).ready(function() {
+         $(function() {
+            $('#doc-form-file').on('change', function() {
+              var fileNames = '';
+              $.each(this.files, function() {
+                fileNames += '<span class="am-badge">' + this.name + '</span> ';
+              });
+              $('#file-list').html(fileNames);
+            });
+          });
+        $('#addbutton').click(function () {
+            var text = document.getElementById('textinput')
+            text.innerText='>NP_666582.1 hypothetical protein SIRV2gp48 [Sulfolobus islandicus rod-shaped virus 2]\n' +
+                'MEVKQIKKLNNLPWVFLDTYLNKFALDKNFVNCAYYSSRSGMTQEGCVQVMQVGDNFKVDTMREVHGIYF\n' +
+                'TPHASIISLIYRQKGIRSIDDLKEILGSLNLSKVSPKHYQLLVKYSNYTIEIYDIYFKGHIYEFPLVSQQ\n' +
+                'GHLNVYNVPEPRNVYLIYYENNEEKKELNKDLFNEVSEFMIYNHRVTFEKPVLEFKNLQITPGGGALVYV\n' +
+                'PESMYVKLESSDHQSVEFRPSRDDWLLFSHPRPRRSGND'
+        })
+        $('input[type=radio][name=radioName]').change(function() {
+            if (this.value == 'blastp') {
+                $('#database_span2').text('blastp (protein-protein BLAST)');
+            }
+            else if (this.value == 'PSI-BLAST') {
+                $('#database_span2').text("PSI-BLAST (Position-Specific Iterated BLAST)");
+            }
+        });
+        $('#databaseSelect').change(function(){
+            var p1=$(this).children('option:selected').val();//这就是selected的值
+            $('#database_span1').text(p1);
+        })
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+
+{% endblock %}
+{% block second_part %}
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+          <iframe src="https://www.ncbi.nlm.nih.gov/Structure/icn3d/full.html?pdbid={{ pdbid }}&showcommand=0&height=640" width="100%" height="740" style="border:none"></iframe>
+  </div>
+</div>
+{% endblock %}
+
+{% block jsblock %}
+
+{% endblock %}

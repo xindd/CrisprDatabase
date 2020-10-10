@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <link rel="stylesheet" href="/static/css/amazeui.datatables.min.css"/>
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/jiantou.js"></script>
+    <script src="/static/js/scroll-self.js"></script>
+    <style>
+    td.details-control {
+        background: url('/static/imgs/details_open.png') no-repeat center center;
+        cursor: pointer;
+        width: 20px;
+    }
+    tr.shown td.details-control {
+        background: url('/static/imgs/details_close.png') no-repeat center center;
+    }
+    table.dataTable thead .sorting_asc:after {
+        font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    }
+    table.dataTable thead .sorting:after {
+        font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    }
+    table.dataTable thead .sorting_desc:after {
+        font-family: "Segoe UI","Lucida Grande",Helvetica,Arial,"Microsoft YaHei",FreeSans,Arimo,"Droid Sans","wenquanyi micro hei","Hiragino Sans GB","Hiragino Sans GB W3",FontAwesome,sans-serif;
+    }
+    .am-dropdown-content:before {
+        border-bottom-color: #0a628f;;
+        bottom: 0;
+    }
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    .am-table {
+        border-collapse: collapse;
+    }
+    .am-radio, .am-checkbox {
+        margin-top: 4px;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title {
+        border-bottom: 0px;
+        border-top: 0;
+        padding: 0;
+        min-height: 0;
+        margin-bottom: 0px;
+    }
+    .tpl-portlet-components .portlet-title .caption {
+        padding: 0;
+    }
+    .caption{
+        margin-bottom: 10px;
+        border-bottom: 2px solid;
+        margin-top: 15px;
+    }
+        .general_table tr td:first-child{
+            width: 20%;
+        }
+        .general_table tr td:last-child{
+            width: 20%;
+        }
+        .span_click{
+            margin-top: 5px;
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+{% block second_part %}
+{% load static %}
+{% load splitfile %}
+
+<div class="detail" style="margin: 25px 0;">
+  <div class="am-container">
+    <div class="tpl-portlet-components" style="overflow: inherit; margin-bottom: 150px;">
+    <div class="am-panel-group" id="accordion">
+        <table class="am-table am-table-bordered" style="margin-bottom: 0px;background: #ccc;margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th style="width: 20%">ACR_ID</th>
+                    <th style="width: 10%">Family</th>
+                    <th style="width: 30%">Source Organism</th>
+                    <th style="width: 20%">Validated</th>
+                    <th style="width: 20%">CRISPR_type_inhibited</th>
+                </tr>
+            </thead>
+        </table>
+        {% for key, values in dataset %}
+{#            <form class="am-form" METHOD="post" ACTION="/VSR/browse_homologs/{{ key }}" target="_blank" data-am-validator>#}
+{#            {% csrf_token %}#}
+            {% with idnum=forloop.counter %}
+            <div class="am-panel am-panel-default" id="title_{{ idnum }}" style="border: 0px">
+              <div class="am-panel-hd" style="background: white;border-bottom: 2px solid #274472;">
+                <h3 class="am-panel-title">
+                    <ul class="am-nav am-nav-pills">
+                        <li><span class="am-icon-plus-square-o span_click  am-collapsed" data-am-collapse="{parent: '#title_{{ idnum }}', target: '#title_{{ idnum }}_child'}"></span></li>
+                        <li> <p>{{ key }}( {{ values.0.yes_verified }} verified + {{ values.0.homologs_num}} homologs )</p></li>
+                        <li>
+                            <div class="" style="float: right">
+                                <a class="am-btn am-btn-default am-btn-xs" href="/VSR/browse_homologs/{{ key }}" target="_blank">Show gene neighborhood</a>
+                                {% if key in anti_newick %}
+                                <a class="am-btn am-btn-default am-btn-xs" href="/VSR/browse_phylogenetic/{{ key }}" target="_blank">Phylogenetic Analysis</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li style="float: right;"><a href="https://www.ncbi.nlm.nih.gov/pubmed/?term={{ values.0.reference }}" target="_blank">{{ values.0.reference }}</a></li>
+                    </ul>
+                </h3>
+              </div>
+            </div>
+            <div id="title_{{ idnum }}_child" class="am-panel-collapse am-collapse">
+                  <table class="am-table am-table-bordered am-table-radius am-table-striped general_table" style="margin-bottom: 0px">
+                    <tbody>
+                    {% for dic in values %}
+                        <tr>
+                            <td style="width: 20%"><a href="/VSR/browse_detail/{{ dic.accession  }}" target="_blank">{{ dic.id }}</a></td>
+                            <td style="width: 10%">{{ dic.family }}</td>
+                            <td style="width: 30%">{{ dic.source_organism }}</td>
+                            <td style="width: 20%">{{ dic.validated }}</td>
+                            <td style="width: 20%">{{ dic.crispr_type_inhibited }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endwith %}
+            </form>
+        {% endfor %}
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block jsblock %}
+<script>
+    $('.span_click').on('click', function () {
+        var len = this.className
+        ls = this
+        if(len.split(' ').length == 2){
+
+            {#this.className = 'am-icon-plus-square-o span_click';#}
+            this.className = 'am-icon-plus-square-o span_click  am-collapsed';
+        }else {
+            {#this.className = 'am-icon-minus-square-o span_click';#}
+            this.className = 'span_click am-icon-minus-square-o';
+        }
+        {#tr.removeClass('shown');#}
+        {#r.addClass('shown');#}
+    });
+    </script>
+{% endblock %}

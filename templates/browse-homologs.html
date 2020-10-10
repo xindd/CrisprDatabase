@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block cssblock %}
+    <script src="/static/js/echarts.min.js"></script>
+    <script src="/static/js/ecarts/homologs.js"></script>
+    <style>
+    .am-table>tbody>tr>td, .am-table>thead>tr>td, .am-table>thead>tr>th, .am-table>tbody>tr>td>div {
+        vertical-align: middle;
+    }
+    </style>
+{% endblock %}
+
+{% block second_part %}
+    <div class="detail" style="margin: 25px 0;">
+      <div class="am-container">
+        <div class="tpl-portlet-components">
+             <table class="" id="table-list">
+                <thead>
+                    <tr>
+                        <th style="width: 10%;text-align: right">ACR_ID</th>
+                        <th style="width: 13%;text-align: right">Accession</th>
+                        <th style="width: 7%;text-align: right">Family</th>
+                        <th style="width: 70%; height: 40px;text-align: center">Genomic Neighborhood</th>
+                    </tr>
+                </thead>
+             <tbody>
+                {% for key, values, rss  in datalist %}
+                    <tr>
+                        <td style="text-align: right"><a  href ="/VSR/browse_detail/{{ key }}" target="_blank">{{ rss }}</a></td>
+                        <td style="text-align: right"><a href="https://www.ncbi.nlm.nih.gov/protein/{{ key }}" target="_blank">{{ key }}</a></td>
+                        <td style="text-align: right">{{ values }}</td>
+                        <td style="overflow: initial;">
+                            {% with keyprotein=rowdata.homolog_accession %}
+{#                             <a href ="/VSR/browse_anti_detail/{{ key }}" target="_blank">#}
+                                 <div id="{{ key }}" style="width: 810px; height: 40px"></div>
+{#                             </a>#}
+                            <script>
+                                var protinid = 'homol1';
+                                var data = {{ datajs| safe }};
+                                data = data["{{ key }}"];
+                                homologs(protinid, data, "{{ key }}")
+                            </script>
+                            {% endwith %}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+             </tbody>
+	</table>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+
+{% block jsblock %}
+
+{% endblock %}
